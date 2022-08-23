@@ -1,0 +1,121 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+
+<div class="row text-center">
+<div class="col"><a class="btn btn-primary" href="{% url 'task-form' %}">add Task</a> </div>
+<div class="col"><li class="btn btn-primary" onclick="filtru(this, 4)">All</li></div>
+<div class="col"><li class="btn btn-primary" onclick="filtru(this, 9)">custom</li>
+<br><br>
+</div>
+
+ 
+
+<div class=" text-center  tableFixHead">
+      <table class="table  table-bordered table-hover " id="tabel">
+        <thead >
+        <tr >
+          <th scope="col" >Nr</th>
+          <th scope="col">
+            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Locatia</a>
+                    <ul class="dropdown-menu">
+                      {% for locatia in locatii %}
+                        <li class="btn dropdown-item "  onclick="filtru(this, 0)">{{locatia}}</aclas></li>
+                      {% endfor %}
+                    </ul>
+          </th>
+          <th scope="col"> 
+            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Serie</a>
+                    <ul class="dropdown-menu">
+                      {% for egm in egms %}
+                        <li class="btn dropdown-item "  onclick="filtru(this, 1)">{{egm}}</aclas></li>
+                      {% endfor %}
+                    </ul>
+          </th>
+          <th scope="col">
+            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cabinet</a>
+                    <ul class="dropdown-menu">
+                      {% for cabinet in cabinete %}
+                        <li class="btn dropdown-item "  onclick="filtru(this, 2)">{{cabinet}}</aclas></li>
+                      {% endfor %}
+                    </ul>
+          </th>
+          <th scope="col">
+            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Componenta</a>
+                    <ul class="dropdown-menu">
+                      {% for componenta in componente %}
+                        <li  class="btn dropdown-item "  onclick="filtru(this, 3)">{{componenta}}</aclas></li>
+                      {% endfor %}
+                    </ul>
+          </th>
+          </th>
+          <th class="col-1">
+            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Label</a>
+                    <ul class="dropdown-menu">
+                      {% for label in labels %}
+                        <li class="btn dropdown-item "  onclick="filtru(this, 4)">{{label}}</aclas></li>
+                      {% endfor %}
+                    </ul>
+          </th>
+          <th class="col-4 ">Problema raportata</th>
+          <th class="col-4">Solutie</th>
+          <th scope="col">Responsabil</th>
+          <th scope="col">
+            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Rezolutie</a>
+                    <ul class="dropdown-menu">
+                      {% for rezolutie in rezolutii %}
+                        <li class="btn dropdown-item "  onclick="filtru(this, 8)">{{rezolutie}}</aclas></li>
+                      {% endfor %}
+                    </ul>
+          </th>
+          <th scope="col">
+            <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Statut</a>
+                    <ul class="dropdown-menu">
+                        <li class="btn dropdown-item text-bg-danger" onclick="filtru(this, 9)">Open</li>
+                        <li class="btn dropdown-item text-bg-success" onclick="filtru(this, 9)">Closed</li>
+                        <li class="btn dropdown-item text-bg-info" onclick="filtru(this, 9)">Progres</li>
+                        <li class="btn dropdown-item text-bg-warning" onclick="filtru(this, 9)">VNET</li>
+                        <li class="btn dropdown-item text-bg-secondary" onclick="filtru(this, 9)">CMAC</li>
+                        <li class="btn dropdown-item text-bg-primary" onclick="filtru(this, 9)">LNM</li>
+                    </ul>
+          </th>
+        </tr>
+        </thead>
+
+        <tbody >
+        {% for task in tasks %}
+        <tr>
+          <th scope="row" ><a href="{% url 'task' task.nr %}">{{task.nr}}</a></th>
+          <td>{{task.locatia.numar}}</td>
+          <td>{{task.egm.serie}}</td>
+          <td>{{task.egm.cabinet}}</td>
+          <td>{{task.componenta}}</td>
+          <td>{{task.label}}</td>
+          <td ><div class="tab-size">{{task.problema}}</div></td>
+          <td ><div class="tab-size">{{task.solutie}}</div></td>
+          <td>{{task.responsabil}}</td>
+          <td >{{task.rezolutie}}</td>
+          {% if task.status == 'open' %}
+          <td class="text-bg-danger">{{task.get_status_display}}</td>
+          {% elif task.status == 'closed' %}
+          <td class="text-bg-success">{{task.get_status_display}}</td>
+          {% elif task.status == 'in_progres' %}
+          <td class="text-bg-info">{{task.get_status_display}}</td>
+          {% elif task.status == 'waiting_vnet' %}
+          <td class="text-bg-warning">{{task.get_status_display}}</td>
+          {% elif task.status == 'waiting_cmac' %}
+          <td class="text-bg-secondary">{{task.get_status_display}}</td>
+          {% elif task.status == 'waiting_lnm' %}
+          <td class="text-bg-primary">{{task.get_status_display}}</td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+</div>
+
+
+
+  {% endblock %}

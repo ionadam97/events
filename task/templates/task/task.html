@@ -1,0 +1,81 @@
+{% extends 'main.html' %} {% block content %}
+
+<a type="button" class="btn btn-primary" href="{% url 'tasks' %}">inapoi</a>
+<a type="button" class="btn btn-primary" href="{% url 'edith-task' task.nr %}">Edith</a>
+
+<div class="text-center">
+      <div class="row text-bg-info p-2">
+        <div class="col">Numar Task</div>
+        <div class="col">Locatia</div>
+        <div class="col">Egm</div>
+        <div class="col">Model</div>
+        <div class="col">Platforma</div>
+      </div>
+    
+      <div class="row text-bg-info p-2">
+        <div class="col">{{task.nr}}</div>
+        <div class="col">{{task.locatia.numar}}</div>
+        <div class="col">{{task.egm.serie}}</div>
+        <div class="col">{{task.egm.cabinet}}</div>
+        <div class="col">{{task.egm.platforma}}</div>
+      </div>
+    
+      <div class="row text-bg-secondary p-2">
+        <div class="col">Data creare</div>
+        <div class="col">Creator Task</div>
+        <div class="col" id="tit">Informator</div>
+        <div class="col">Componenta</div>
+        <div class="col">Label</div>
+      </div>
+    
+      <div class="row text-bg-secondary p-2">
+        <div class="col">{{task.created}}</div>
+        <div class="col" >{{task.owner}}</div>
+        <div class="col" id="informat">{{task.informatorul}}</div>
+        <div class="col" id="comp">{{task.componenta}}</div>
+        <div class="col">{{task.label}}</div>
+      </div>
+    
+      <div class="row text-bg-light">
+        <div class="col">Problema:</div>
+        <div class="col">Solutie:</div>
+        <div class="col">Sumar:</div>
+      </div>
+    
+      <div class="row text-bg-light">
+        <div class="col">{{task.problema}}</div>
+        <div class="col">{{task.solutie}}</div>
+        <div class="col">{{task.sumar}}</div>
+      </div>
+    
+      {% if task.status == 'closed' %}
+      <div class="row text-bg-success">
+        {% else %}
+        <div class="row text-bg-warning">
+          {% endif %}
+          <div class="col">Responsabil</div>
+          <div class="col">Rezolutie</div>
+          <div class="col">Status</div>
+          <div class="col">Data inchidere</div>
+          <div class="col">Supervisor</div>
+        </div>
+    
+        {% if task.status == 'closed' %}
+        <div class="row text-bg-success">
+          {% else %}
+          <div class="row text-bg-warning">
+            {% endif %}
+            <div class="col">{{task.responsabil}}</div>
+            <div class="col">{{task.rezolutie}}</div>
+            <div class="col">{{task.status}}</div>
+            <div class="col">{{task.data_inchidere}}</div>
+            <div class="col">{{task.supervisor}}</div>
+          </div>
+        </div>
+          </div>
+        </div>
+    
+    {% endblock %}
+  
+
+    

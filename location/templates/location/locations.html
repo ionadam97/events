@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<div class="row text-center">
+  <div class="col"><a class="btn btn-primary" href="{% url 'location-form' %}">Adauga Locatie</a></div>
+  <div class="col"><a class="btn btn-primary" href="{% url 'manager-form' %}">Adauga Manager</a></div>
+  <br><br>
+</div>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nr</th>
+      <th scope="col">Name</th>
+      <th scope="col">Adresa</th>
+      <th scope="col">Telefon</th>
+      <th scope="col">Adresa IP</th>
+      <th scope="col">Manager</th>
+      <th scope="col">Telefon Manager</th>
+      <th scope="col">Email Manager</th>
+      <th scope="col">Deschidere</th>
+      <th scope="col">Inchidere</th>
+      <th scope="col">Status</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for location in locations %}
+    <tr>
+      <th scope="row">{{location.numar}}</th>
+      <td>{{location.name}}</td>
+      <td>{{location.address}}</td>
+      <td>{{location.telefon}}</td>
+      <td>{{location.adresa_ip}}</td>
+      <td>{{location.manager.nume}}</td>
+      <td>{{location.manager.telefon}}</td>
+      <td>{{location.manager.email}}</td>
+      <td>{{location.data_deschidere}}</td>
+      <td>{{location.data_inchidere}}</td>
+      <td>{{location.status}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+  
+  
+
+  
+
+  {% endblock %}

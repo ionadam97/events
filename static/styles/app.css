@@ -1,0 +1,25 @@
+:root {
+  --color-sub: #2d2d39;
+  --color-sub1: #12528f;
+}
+
+.form_in{
+  background-color: #93a5aa;
+  min-width: 30rem;
+  min-height: 10rem;
+}
+
+.cardsize{
+  max-width: 25rem;
+  min-height: 15rem;
+}
+
+.tab-size{
+  min-width: 350px;
+}
+
+.tableFixHead thead th {
+   position: sticky; top: 0; z-index: 1;
+   background-color: rgb(20, 142, 223);
+   color:aliceblue;
+ }

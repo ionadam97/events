@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<a class="btn btn-primary" href="{% url 'locations' %}">Locatii</a>
+
+    <div class=" form_in col-9 container rounded">
+        
+        <br>
+        <form  method="POST" >
+            <div class="row g-3">
+            {% csrf_token %}
+            {% for field in form %}
+            <!-- Input:Text -->
+            <div class=" col-md-4">
+                <label >{{field.label}}:</label>
+                <label id="{{field.label}}"></label>
+               {{field}}
+            </div>
+            {% endfor %}
+                </div>
+                <br>
+                <input class=" btn btn-primary" type="submit" value="Submit" />
+               <br><br>
+            </form>
+        
+    </div>
+
+  {% endblock %}

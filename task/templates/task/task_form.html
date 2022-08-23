@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+            <a type="button" class="btn btn-primary" href="{% url 'tasks' %}">inapoi</a>
+            <br>
+
+            <form  method="POST" >
+                <div class="row g-3">
+                {% csrf_token %}
+                {% for field in form %}
+                <!-- Input:Text -->
+                <div class=" col-md-4">
+                    <label >{{field.label}}</label>
+                    <label id="{{field.label}}"></label>
+                   {{field}}
+                </div>
+                {% endfor %}
+
+                <input type="time">
+
+                <input type="text" id="selected" list="locatie" >
+
+            <datalist id="adj">
+                <option value=""></option>
+            </datalist>
+
+            <datalist id="locatie">
+                {% for locatie in locatii %}
+
+                <option  value="{{locatie.id}}">{{locatie}}</option>
+                {% endfor %}
+            </datalist>
+
+                </div>
+                <input class="btn btn-primary btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+            
+            
+
+
+
+            <script>
+                var data = JSON.parse('{{listaJs|escapejs}}');
+            </script>
+
+
+<script src="{% static 'js/form.js' %}"></script>
+
+  {% endblock %}
