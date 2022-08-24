@@ -24,3 +24,8 @@
    background-color: rgb(20, 142, 223);
    color:aliceblue;
  }
+
+.card-img-top {
+  height: 23rem;
+
+}

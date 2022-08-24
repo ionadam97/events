@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 
 def loginUser(request):
-
-
     if request.user.is_authenticated:
         return redirect('profiles')
 

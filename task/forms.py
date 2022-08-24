@@ -6,13 +6,13 @@ class TaskForm(ModelForm):
     class Meta:
         model = Task
         fields = ['locatia', 'componenta', 'label', 'egm',
-                  'informatorul', 'status', 'problema', 'solutie',
-                  'sumar', 'responsabil', 'rezolutie',
-                  'data_inchidere', 'supervisor']
+                  'informatorul', 'rezolutie', 'problema', 'solutie',
+                  'sumar', 'responsabil' ,'status', 'data_inchidere', 'supervisor']
 
         widgets = {
             'locatia': TextInput(attrs={'list': 'locatie'}),
             'egm': TextInput(attrs={'list': 'adj'}),
+            
          }
          
     def __init__(self, *args, **kwargs):
@@ -20,6 +20,26 @@ class TaskForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({'class':'form-control'})
+
+
+
+
+class TaskSvForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = ['status', 'data_inchidere', 'supervisor']
+
+        widgets = {
+            
+         }
+         
+    def __init__(self, *args, **kwargs):
+        super(TaskForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class':'form-control'})
+
+
 
 
 class ComponentaForm(ModelForm):

@@ -6,13 +6,13 @@
     {% for profile in profiles %}
     <div class="col-4">
       <div class="col-10">
-      <div href="{% url 'user_profile' profile.id %}" class="card">
-        <img src="{{profile.imageURL}}" class="card-img-top" alt="...">
+      <a href="{% url 'user_profile' profile.id %}" class="card">
+        <img src="{{profile.imageURL}}" class="card-img-top" alt="image">
         <div class="card-body">
-          <h5 class="card-title">{{profile.prenume}}</h5>
+          <h5 class="card-title">{{profile.username}}</h5>
           <p class="card-text">{{profile.functie|slice:"60"}}</p>
         </div>
-      </div>
+      </a>
     </div>
     </div>
     {% endfor %}
