@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<main>
+  <div class="row text-center">
+    <div class="col">
+      <a class="btn btn-primary" href="{% url 'egm' %}">Adj-uri</a>
+      <a class="btn btn-primary" href="{% url 'egm-form' %}">Adauga egm</a>
+    </div>
+    <div class="col">
+      <a  class="btn btn-primary"href="{% url 'cabinet' %}">Cabinete</a>
+      <a  class="btn btn-primary"href="{% url 'cabinet-form' %}">Adauga cabinet</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" href="{% url 'platform' %}">Platforma</a>
+      <a class="btn btn-primary" href="{% url 'platform-form' %}">Adauga platforma</a>
+    </div>
+  </div>
+  <br>
+  <div class=" text-center  tableFixHead">
+    <table class="table  table-bordered table-hover " id="tabel">
+      <thead >
+      <tr >
+        <th scope="col" >Nr</th>
+        <th scope="col">Platforma</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody >
+      {% for platform in platforme %}
+      <tr>
+        <td  class="fw-bold" ><a href="">{{platform.id}}</a></td>
+        <td>{{platform}}</td>
+        <td>xx</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+
+
+</main>
+
+
+  {% endblock %}

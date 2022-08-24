@@ -3,94 +3,94 @@
 
 {% block content %}
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="row g-2 ">
 
-    <div class="col">
+    <div class="col-4">
             <div class="card text-bg-danger mb-3 cardsize">
             <a href="{% url 'tasks-filtred' 'open' %}" >
             <div class="card-header">Open</div>
             <div class="card-body">
               <h5 class="card-title">Taskuri:{{open.count}} </h5>
-              <p class="card-text">Locatia: {% for loc in open %}
+              <h6 class="card-text">Locatia: {% for loc in open %}
                                                 {{loc.locatia}};
                                             {% endfor %}
-              </p>
+              </h6>
             </div>
           </div>
         </a>
       </div>
 
-      <div class="col">
+      <div class="col-4">
         <div class="card text-bg-success mb-3 cardsize">
         <a href="{% url 'tasks-filtred' 'closed' %}" >
         <div class="card-header">Closed</div>
         <div class="card-body">
           <h5 class="card-title">Taskuri:{{closed.count}} </h5>
-          <p class="card-text">Locatia: {% for loc in closed %}
+          <h6 class="card-text">Locatia: {% for loc in closed %}
                                             {{loc.locatia}};
                                         {% endfor %}
-    </p>
+          </h6>
         </div>
       </div>
     </a>
   </div>
 
-  <div class="col">
+  <div class="col-4">
     <div class="card text-bg-info mb-3 cardsize">
         <a href="{% url 'tasks-filtred' 'in_progres' %}" >
     <div class="card-header">In progres</div>
     <div class="card-body">
       <h5 class="card-title">Taskuri:{{progres.count}} </h5>
-      <p class="card-text">Locatia: {% for loc in progres %}
+      <h6 class="card-text">Locatia: {% for loc in progres %}
                                         {{loc.locatia}};
                                     {% endfor %}
-      </p>
+      </h6>
     </div>
   </div>
 </a>
 </div>
 
 
-<div class="col">
+<div class="col-4">
     <div class="card text-bg-warning mb-3 cardsize">
         <a href="{% url 'tasks-filtred' 'waiting_vnet' %}" >
     <div class="card-header">Waiting for VNET</div>
     <div class="card-body">
       <h5 class="card-title">Taskuri:{{vnet.count}} </h5>
-      <p class="card-text">Locatia: {% for loc in vnet %}
+      <h6 class="card-text">Locatia: {% for loc in vnet %}
                                 {{loc.locatia}};
                             {% endfor %}
-        </p>
+      </h6>
     </div>
   </div>
 </a>
 </div>
 
 
-<div class="col">
+<div class="col-4">
     <div class="card text-bg-secondary mb-3 cardsize">
         <a href="{% url 'tasks-filtred' 'waiting_cmac' %}" ></a>
     <div class="card-header">Waiting for CMAC</div>
     <div class="card-body">
       <h5 class="card-title">Taskuri:{{cmac.count}} </h5>
-      <p class="card-text">Locatia: {% for loc in cmac %}
+      <h6 class="card-text">Locatia: {% for loc in cmac %}
                                         {{loc.locatia}};
                                     {% endfor %}
-      </p>
+      </h6>
     </div>
   </div>
 </a>
 </div>
-<div class="col">
+<div class="col-4">
     <div class="card text-bg-primary mb-3 cardsize">
     <a href="{% url 'tasks-filtred' 'waiting_lnm' %}" ></a>
     <div class="card-header">Waiting for LNM</div>
     <div class="card-body">
       <h5 class="card-title">Taskuri:{{lnm.count}} </h5>
-      <p class="card-text">Locatia: {% for loc in lnm %}
+      <h6 class="card-text">Locatia: {% for loc in lnm %}
                                         {{loc.locatia}};
                                     {% endfor %}
-        nr tasc, locatia, adj, cabinet,  problema, statut</p>
+        nr tasc, locatia, adj, cabinet,  problema, statut</h6>
     </div>
   </div>
 </a>

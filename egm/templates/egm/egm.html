@@ -2,20 +2,85 @@
 
 
 {% block content %}
-<br>
-<a href="{% url 'egm-form' %}">add egm</a>  
-<br>
-<br>
-<hr>
-<br>
-<a href="{% url 'cabinet-form' %}">add cabinet type</a>
-<br>
-<br>
-<hr>
-<br> 
-<a href="{% url 'platform-form' %}">add platform</a>
-<br>
-<br>
+<main>
+  <div class="row text-center">
+    <div class="col">
+      <a class="btn btn-primary" href="{% url 'egm' %}">Adj-uri</a>
+      <a class="btn btn-primary" href="{% url 'egm-form' %}">Adauga egm</a>
+    </div>
+    <div class="col">
+      <a  class="btn btn-primary"href="{% url 'cabinet' %}">Cabinete</a>
+      <a  class="btn btn-primary"href="{% url 'cabinet-form' %}">Adauga cabinet</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" href="{% url 'platform' %}">Platforma</a>
+      <a class="btn btn-primary" href="{% url 'platform-form' %}">Adauga platforma</a>
+    </div>
+  </div>
+  <br>
+  <div class=" text-center  tableFixHead">
+    <table class="table  table-bordered table-hover " id="tabel">
+      <thead >
+      <tr >
+        <th scope="col" >Nr</th>
+        <th scope="col">
+          <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Locatia</a>
+            <ul class="dropdown-menu">
+              <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
+              {% for locatia in locatii %}
+                <li class="btn dropdown-item "  onclick="filtru(this, 1)">{{locatia}}</aclas></li>
+              {% endfor %}
+            </ul>
+        </th>
+        <th scope="col"> 
+          <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Serie</a>
+            <ul class="dropdown-menu">
+              <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
+              {% for egm in egms %}
+                <li class="btn dropdown-item "  onclick="filtru(this, 2)">{{egm}}</aclas></li>
+              {% endfor %}
+            </ul>
+        </th>
+        <th scope="col">
+          <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cabinet</a>
+            <ul class="dropdown-menu">
+              <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
+            {% for cabinet in cabinete %}
+              <li class="btn dropdown-item "  onclick="filtru(this, 3)">{{cabinet}}</aclas></li>
+            {% endfor %}
+            </ul>
+        </th>
+        <th scope="col">
+          <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Platforma</a>
+            <ul class="dropdown-menu">
+              <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
+              {% for platforma in platforme %}
+                <li class="btn dropdown-item "  onclick="filtru(this, 4)">{{platforma}}</aclas></li>
+              {% endfor %}
+            </ul>
+        </th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody >
+      {% for egm in egms %}
+      <tr>
+        <td  class="fw-bold" ><a href="">{{egm.id}}</a></td>
+        <td>{{egm.locatia.numar}}</td>
+        <td>{{egm.serie}}</td>
+        <td>{{egm.cabinet}}</td>
+        <td>{{egm.platforma}}</td>
+        <td>xx</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+
+
+</main>
 
 
   {% endblock %}
