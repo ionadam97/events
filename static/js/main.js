@@ -14,10 +14,6 @@ filter2 = 'xxx'
 filter3 = 'xxx'
 filter4 = 'xxx'
 
-
-
-
-
 function filtru(filter, x) {
   tabel = document.getElementById('tabel');
   tr = tabel.getElementsByTagName("tr");
@@ -27,7 +23,6 @@ function filtru(filter, x) {
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[x];
     
-  
     if (td) {
       txtValue = td.textContent || td.innerText;
       console.log(txtValue)
@@ -48,7 +43,6 @@ function filtru(filter, x) {
        else {
 
             if (tr[i].style.display == "" || x == y){
-              
               if (txtValue.indexOf(filter) > -1 || txtValue.indexOf(filter1) > -1 
               || txtValue.indexOf(filter2) > -1 || txtValue.indexOf(filter3) > -1 || txtValue.indexOf(filter4) > -1) {
                 tr[i].style.display = "";
@@ -56,21 +50,10 @@ function filtru(filter, x) {
                 tr[i].style.display = "none";
               }}}
   }
-  
 }
 y=x
-
-
-    // if(rez.textContent !== car.textContent){
-    //   console.log(rez.textContent)
-    //   $("#").remove()
-    // }
   };
 
-
-
-
-  
 
 
 

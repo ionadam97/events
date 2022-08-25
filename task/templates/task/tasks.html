@@ -4,21 +4,22 @@
 {% block content %}
 
 
-<div class="row text-center">
+<div class="row text-center p-2">
 <div class="col"><a class="btn btn-primary" href="{% url 'task-form' %}">add Task</a> </div>
 <div class="col"></div>
 <div class="col"></div>
-<br><br>
+
 </div>
 
  
 
 <div class=" text-center  tableFixHead">
-      <table class="table  table-bordered table-hover " id="tabel">
+      <table class="table table-bordered table-hover lh-1  " id="tabel">
         <thead >
         <tr >
-          <th scope="col" >Nr</th>
-          <th scope="col">
+          <th class="px-1" >Nr</th>
+          <th class="px-1" >Data</th>
+          <th class="px-1" >
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Locatia</a>
                     <ul class="dropdown-menu">
                       <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
@@ -27,7 +28,7 @@
                       {% endfor %}
                     </ul>
           </th>
-          <th scope="col"> 
+          <th class="px-1"> 
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Serie</a>
                     <ul class="dropdown-menu">
                       <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
@@ -36,7 +37,7 @@
                       {% endfor %}
                     </ul>
           </th>
-          <th scope="col">
+          <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cabinet</a>
                     <ul class="dropdown-menu">
                       <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
@@ -45,7 +46,7 @@
                       {% endfor %}
                     </ul>
           </th>
-          <th scope="col">
+          <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Componenta</a>
                     <ul class="dropdown-menu">
                       <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
@@ -55,7 +56,7 @@
                     </ul>
           </th>
           </th>
-          <th scope="col">
+          <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Label</a>
                     <ul class="dropdown-menu">
                       <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
@@ -64,10 +65,10 @@
                       {% endfor %}
                     </ul>
           </th>
-          <th scope="col">Problema raportata</th>
-          <th scope="col">Solutie</th>
-          <th scope="col">Responsabil</th>
-          <th scope="col">
+          <th class="px-1">Problema raportata</th>
+          <th class="px-1">Solutie</th>
+          <th class="px-1">Responsabil</th>
+          <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Rezolutie</a>
                     <ul class="dropdown-menu">
                       <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
@@ -76,7 +77,7 @@
                       {% endfor %}
                     </ul>
           </th>
-          <th scope="col">
+          <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Statut</a>
                     <ul class="dropdown-menu">
                       <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
@@ -95,28 +96,29 @@
         <tbody >
         {% for task in tasks %}
         <tr>
-          <th scope="row" ><a href="{% url 'task' task.nr %}">{{task.nr}}</a></th>
-          <td>{{task.locatia.numar}}</td>
-          <td>{{task.egm.serie}}</td>
-          <td>{{task.egm.cabinet}}</td>
-          <td>{{task.componenta}}</td>
-          <td>{{task.label}}</td>
-          <td ><div class="tab-size">{{task.problema}}</div></td>
-          <td ><div class="tab-size">{{task.solutie}}</div></td>
-          <td>{{task.responsabil}}</td>
-          <td >{{task.rezolutie}}</td>
+          <th class="px-1"><a href="{% url 'task' task.nr %}">{{task.nr}}</a></th>
+          <td class="px-1">{{task.created|date:"H:i d.m.y"}}</td>
+          <td class="px-1">{{task.locatia.numar}}</td>
+          <td class="px-1">{{task.egm.serie}}</td>
+          <td class="px-1">{{task.egm.cabinet}}</td>
+          <td class="px-1">{{task.componenta}}</td>
+          <td class="px-1">{{task.label}}</td>
+          <td class="px-1" ><div class="text-start">{{task.problema}}</div></td>
+          <td class="px-1"><div class="text-start">{{task.solutie}}</div></td>
+          <td class="px-1">{{task.responsabil}}</td>
+          <td class="px-1">{{task.rezolutie}}</td>
           {% if task.status == 'open' %}
-          <td class="text-bg-danger">{{task.get_status_display}}</td>
+          <td class="text-bg-danger px-1">{{task.get_status_display}}</td>
           {% elif task.status == 'closed' %}
-          <td class="text-bg-success">{{task.get_status_display}}</td>
+          <td class="text-bg-success px-1">{{task.get_status_display}}</td>
           {% elif task.status == 'in_progres' %}
-          <td class="text-bg-info">{{task.get_status_display}}</td>
+          <td class="text-bg-info px-1">{{task.get_status_display}}</td>
           {% elif task.status == 'waiting_vnet' %}
-          <td class="text-bg-warning">{{task.get_status_display}}</td>
+          <td class="text-bg-warning px-1">{{task.get_status_display}}</td>
           {% elif task.status == 'waiting_cmac' %}
-          <td class="text-bg-secondary">{{task.get_status_display}}</td>
+          <td class="text-bg-secondary px-1">{{task.get_status_display}}</td>
           {% elif task.status == 'waiting_lnm' %}
-          <td class="text-bg-primary">{{task.get_status_display}}</td>
+          <td class="text-bg-primary px-1">{{task.get_status_display}}</td>
           {% endif %}
         </tr>
         {% endfor %}

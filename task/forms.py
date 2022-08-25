@@ -7,7 +7,7 @@ class TaskForm(ModelForm):
         model = Task
         fields = ['locatia', 'componenta', 'label', 'egm',
                   'informatorul', 'rezolutie', 'problema', 'solutie',
-                  'sumar', 'responsabil' ,'status', 'data_inchidere', 'supervisor']
+                  'sumar', 'responsabil' ,'status']
 
         widgets = {
             'locatia': TextInput(attrs={'list': 'locatie'}),

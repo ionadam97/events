@@ -3,19 +3,30 @@
 
 {% block content %}
 
-            <a type="button" class="btn btn-primary" href="{% url 'tasks' %}">inapoi</a>
-            <br>
+            <div class="p-2"><a type="button" class="btn btn-primary " href="{% url 'tasks' %}">inapoi</a></div>
+            
 
             <form  method="POST" >
-                <div class="row g-3">
+                <div class="row p-3 g-3">
                 {% csrf_token %}
                 {% for field in form %}
+                
+                {% if field == form.status and request.user.profile.functie != 'Supervisor HD'%}
                 <!-- Input:Text -->
+                <div class=" col-md-4 visually-hidden">
+                    <label >{{field.label}}</label>
+                    <label id="{{field.label}}"></label>
+                   {{field}}
+                </div>
+                
+                {% else %}
                 <div class=" col-md-4">
                     <label >{{field.label}}</label>
                     <label id="{{field.label}}"></label>
                    {{field}}
                 </div>
+
+                {% endif %}
                 {% endfor %}
 
             <datalist id="adj">
@@ -30,7 +41,7 @@
             </datalist>
 
                 </div>
-                <input class="btn btn-primary btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                <input class="btn btn-primary btn--sub btn--lg   my-md" type="submit" value="Submit" />
             </form>
             
             

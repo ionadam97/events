@@ -1,12 +1,21 @@
 from django.shortcuts import render, redirect
 from .forms import LocationForm, ManagerForm
-from .models import Location
+from .models import Location, Manager
 # Create your views here.
 def locations(request):
     locations = Location.objects.all()
 
     context = {'locations':locations}
     return render(request, 'location/locations.html', context)
+
+
+
+def managers(request):
+    managers = Manager.objects.all()
+
+    context = {'managers':managers}
+    return render(request, 'location/managers.html', context)
+
 
 
 def createLocation(request):

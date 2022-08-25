@@ -2,15 +2,16 @@
 
 
 {% block content %}
-<div class="row text-center">
+<div class="row text-center p-2">
   <div class="col"><a class="btn btn-primary" href="{% url 'location-form' %}">Adauga Locatie</a></div>
-  <div class="col"><a class="btn btn-primary" href="{% url 'manager-form' %}">Adauga Manager</a></div>
-  <br><br>
+  <div class="col">
+    <a class="btn btn-primary" href="{% url 'managers' %}">Manageri</a>
+    <a class="btn btn-primary" href="{% url 'manager-form' %}">Adauga Manager</a>
+  </div>
 </div>
 
-
-
-<table class="table table-striped">
+<div class=" text-center  tableFixHead">
+<table class="table table-bordered table-hover"  id="tabel">
   <thead>
     <tr>
       <th scope="col">Nr</th>
@@ -45,6 +46,7 @@
     {% endfor %}
   </tbody>
 </table>
+</div>
 
   
   

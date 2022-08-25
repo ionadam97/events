@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<div class="row text-center">
+  <div class="col">
+    <a class="btn btn-primary" href="{% url 'locations' %}">Locatii</a>
+    <a class="btn btn-primary" href="{% url 'location-form' %}">Adauga Locatie</a>
+  </div>
+  <div class="col">
+    
+    <a class="btn btn-primary" href="{% url 'manager-form' %}">Adauga Manager</a>
+  </div>
+  <br><br>
+</div>
+
+
+<div class=" text-center  tableFixHead">
+<table class="table table-bordered table-hover"  id="tabel">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefon</th>
+      <th scope="col">x</th>
+     
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for manager in managers %}
+    <tr>
+      <th scope="row">{{manager.nume}}</th>
+      <td>{{manager.email}}</td>
+      <td>{{manager.telefon}}</td>
+      <td>x</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+  
+  
+{% endblock %}
