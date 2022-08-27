@@ -24,24 +24,6 @@ class TaskForm(ModelForm):
 
 
 
-class TaskSvForm(ModelForm):
-    class Meta:
-        model = Task
-        fields = ['status', 'data_inchidere', 'supervisor']
-
-        widgets = {
-            
-         }
-         
-    def __init__(self, *args, **kwargs):
-        super(TaskForm, self).__init__(*args, **kwargs)
-
-        for name, field in self.fields.items():
-            field.widget.attrs.update({'class':'form-control'})
-
-
-
-
 class ComponentaForm(ModelForm):
     class Meta:
         model = Componenta

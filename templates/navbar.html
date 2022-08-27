@@ -8,6 +8,7 @@
             </div>
             <ul class="list-unstyled components">
                 <li >
+                    <a href="{% url 'task-form' %}">Add Task +</a>
                    <a href="{% url 'dashboard' %}">Dashboard</a>
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Egm</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -42,7 +43,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                    </button>
+                    </button> <li class="nav-item active "><a  class="text-white fw-bold" href="{% url 'task-form' %}">Add Task +</a></li>
                     <button class="btn btn-light d-inline-block d-lg-none  ml-auto " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>

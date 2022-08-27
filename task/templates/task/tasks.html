@@ -2,16 +2,7 @@
 
 
 {% block content %}
-
-
-<div class="row text-center p-2">
-<div class="col"><a class="btn btn-primary" href="{% url 'task-form' %}">add Task</a> </div>
-<div class="col"></div>
-<div class="col"></div>
-
-</div>
-
- 
+<div ><h4 id="fil" style="display: none">Filtru:</h4></div>
 
 <div class=" text-center  tableFixHead">
       <table class="table table-bordered table-hover lh-1  " id="tabel">
@@ -22,36 +13,36 @@
           <th class="px-1" >
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Locatia</a>
                     <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
+                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
                       {% for locatia in locatii %}
-                        <li class="btn dropdown-item "  onclick="filtru(this, 0)">{{locatia}}</li>
+                        <li class="btn dropdown-item "  onclick="filtru(this, 1)">{{locatia}}</li>
                       {% endfor %}
                     </ul>
           </th>
           <th class="px-1"> 
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Serie</a>
                     <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
+                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
                       {% for egm in egms %}
-                        <li class="btn dropdown-item "  onclick="filtru(this, 1)">{{egm}}</li>
+                        <li class="btn dropdown-item "  onclick="filtru(this, 2)">{{egm}}</li>
                       {% endfor %}
                     </ul>
           </th>
           <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Cabinet</a>
                     <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
+                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
                       {% for cabinet in cabinete %}
-                        <li class="btn dropdown-item "  onclick="filtru(this, 2)">{{cabinet}}</li>
+                        <li class="btn dropdown-item "  onclick="filtru(this, 3)">{{cabinet}}</li>
                       {% endfor %}
                     </ul>
           </th>
           <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Componenta</a>
                     <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
+                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
                       {% for componenta in componente %}
-                        <li  class="btn dropdown-item "  onclick="filtru(this, 3)">{{componenta}}</li>
+                        <li  class="btn dropdown-item "  onclick="filtru(this, 4)">{{componenta}}</li>
                       {% endfor %}
                     </ul>
           </th>
@@ -59,9 +50,9 @@
           <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Label</a>
                     <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
+                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
                       {% for label in labels %}
-                        <li class="btn dropdown-item "  onclick="filtru(this, 4)">{{label}}</li>
+                        <li class="btn dropdown-item "  onclick="filtru(this, 5)">{{label}}</li>
                       {% endfor %}
                     </ul>
           </th>
@@ -71,23 +62,23 @@
           <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Rezolutie</a>
                     <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
+                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
                       {% for rezolutie in rezolutii %}
-                        <li class="btn dropdown-item "  onclick="filtru(this, 8)">{{rezolutie}}</li>
+                        <li class="btn dropdown-item "  onclick="filtru(this, 9)">{{rezolutie}}</li>
                       {% endfor %}
                     </ul>
           </th>
           <th class="px-1">
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Statut</a>
                     <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 5)">All</li>
-                      <li class="btn dropdown-item" onclick="filtru(this, 9)">custom</li>
-                      <li class="btn dropdown-item text-bg-danger" onclick="filtru(this, 9)">Open</li>
-                      <li class="btn dropdown-item text-bg-success" onclick="filtru(this, 9)">Closed</li>
-                      <li class="btn dropdown-item text-bg-info" onclick="filtru(this, 9)">Progres</li>
-                      <li class="btn dropdown-item text-bg-warning" onclick="filtru(this, 9)">VNET</li>
-                      <li class="btn dropdown-item text-bg-secondary" onclick="filtru(this, 9)">CMAC</li>
-                      <li class="btn dropdown-item text-bg-primary" onclick="filtru(this, 9)">LNM</li>
+                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
+                      <li class="btn dropdown-item" onclick="filtru(this, 10)">custom</li>
+                      <li class="btn dropdown-item text-bg-danger" onclick="filtru(this, 10)">Open</li>
+                      <li class="btn dropdown-item text-bg-success" onclick="filtru(this, 10)">Closed</li>
+                      <li class="btn dropdown-item text-bg-info" onclick="filtru(this, 10)">Progres</li>
+                      <li class="btn dropdown-item text-bg-warning" onclick="filtru(this, 10)">VNET</li>
+                      <li class="btn dropdown-item text-bg-secondary" onclick="filtru(this, 10)">CMAC</li>
+                      <li class="btn dropdown-item text-bg-primary" onclick="filtru(this, 10)">LNM</li>
                     </ul>
           </th>
         </tr>

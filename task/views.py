@@ -21,6 +21,13 @@ def dashboard(request):
         'vnet':vnet,'cmac':cmac,'lnm':lnm}
     return render(request, 'task/dashboard.html', context)
 
+def taskFilter(request, pk):
+    value = pk
+    tasks = Task.objects.filter(status=value)
+
+
+    context = {'tasks':tasks}
+    return render(request, 'task/tasks.html', context)
 
 
 def tasks(request):
@@ -54,6 +61,29 @@ def task(request, pk):
     return render(request, 'task/task.html', context)
 
 
+def createTask(request):
+    locatii = Location.objects.all()
+    egm = list(Egm.objects.values('id','serie','locatia_id'))
+    profile = request.user.profile
+    form = TaskForm()
+    now = datetime.datetime.now()
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid:
+            task = form.save()
+            task.owner = profile
+            if task.status != 'open':
+                task.supervisor = profile.username
+                if task.status == 'closed':
+                    task.data_inchidere = now
+            task.save()
+            return redirect('tasks')
+        
+    context = {'form': form, 'listaJs':json.dumps(egm),'locatii':locatii}
+    return render(request, 'task/task_form.html', context)
+
+
+
 def edithTask(request, pk):
     locatii = Location.objects.all()
     egm = list(Egm.objects.values('id','serie','locatia_id'))
@@ -79,38 +109,6 @@ def edithTask(request, pk):
     context = {'task':task, 'form':form, 'listaJs':json.dumps(egm),'locatii':locatii}
     return render(request, 'task/task_form.html', context)
 
-
-
-def taskFilter(request, pk):
-    value = pk
-    tasks = Task.objects.filter(status=value)
-    print(request)
-
-    context = {'tasks':tasks}
-    return render(request, 'task/tasks.html', context)
-
-
-
-def createTask(request):
-    locatii = Location.objects.all()
-    egm = list(Egm.objects.values('id','serie','locatia_id'))
-    profile = request.user.profile
-    form = TaskForm()
-    now = datetime.datetime.now()
-    if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid:
-            task = form.save()
-            task.owner = profile
-            if task.status != 'open':
-                task.supervisor = profile.username
-                if task.status == 'closed':
-                    task.data_inchidere = now
-            task.save()
-            return redirect('tasks')
-        
-    context = {'form': form, 'listaJs':json.dumps(egm),'locatii':locatii}
-    return render(request, 'task/task_form.html', context)
 
 
 def createComponenta(request):
