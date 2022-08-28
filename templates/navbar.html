@@ -8,8 +8,10 @@
             </div>
             <ul class="list-unstyled components">
                 <li >
-                    <a href="{% url 'task-form' %}">Add Task +</a>
                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                   <a href="{% url 'tasks'%}">Toate taskurile</a>
+                   <a href="{% url 'locations' %}">Locatii</a>
+                   <a href="{% url 'profiles' %}">Utilizatori</a>
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Egm</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li><a href="{% url 'egm' %}">Egm</a></li>
@@ -27,9 +29,9 @@
                         <li><a href="{% url 'rezolutie-form' %}">Rezolutie</a></li>
                     </ul>
                 </li>
-                <li><a href="{% url 'tasks'%}">Toate taskurile</a></li>
-                <li><a href="{% url 'profiles' %}">Utilizatori</a></li>
-                <li><a href="{% url 'locations' %}">Locatii</a></li>
+                
+                <li></li>
+                <li></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>

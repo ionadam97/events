@@ -7,7 +7,7 @@
 
     <div class="col-4">
             <div class="card text-bg-danger mb-3 cardsize">
-            <a href="{% url 'tasks-filtred' 'open' %}" >
+            <a href="{% url 'tasks-filtred' 'Open' %}" >
             <div class="card-header">Open</div>
             <div class="card-body">
               <h5 class="card-title">Taskuri:{{open.count}} </h5>
@@ -22,7 +22,7 @@
 
       <div class="col-4">
         <div class="card text-bg-success mb-3 cardsize">
-        <a href="{% url 'tasks-filtred' 'closed' %}" >
+        <a href="{% url 'tasks-filtred' 'Closed' %}" >
         <div class="card-header">Closed</div>
         <div class="card-body">
           <h5 class="card-title">Taskuri:{{closed.count}} </h5>
@@ -35,7 +35,7 @@
 
   <div class="col-4">
     <div class="card text-bg-info mb-3 cardsize">
-        <a href="{% url 'tasks-filtred' 'in_progres' %}" >
+        <a href="{% url 'tasks-filtred' 'Progres' %}" >
     <div class="card-header">In progres</div>
     <div class="card-body">
       <h5 class="card-title">Taskuri:{{progres.count}} </h5>
@@ -51,7 +51,7 @@
 
 <div class="col-4">
     <div class="card text-bg-warning mb-3 cardsize">
-        <a href="{% url 'tasks-filtred' 'waiting_vnet' %}" >
+        <a href="{% url 'tasks-filtred' 'VNET' %}" >
     <div class="card-header">Waiting for VNET</div>
     <div class="card-body">
       <h5 class="card-title">Taskuri:{{vnet.count}} </h5>
@@ -67,7 +67,7 @@
 
 <div class="col-4">
     <div class="card text-bg-secondary mb-3 cardsize">
-        <a href="{% url 'tasks-filtred' 'waiting_cmac' %}" ></a>
+        <a href="{% url 'tasks-filtred' 'CMAC' %}" >
     <div class="card-header">Waiting for CMAC</div>
     <div class="card-body">
       <h5 class="card-title">Taskuri:{{cmac.count}} </h5>
@@ -81,7 +81,7 @@
 </div>
 <div class="col-4">
     <div class="card text-bg-primary mb-3 cardsize">
-    <a href="{% url 'tasks-filtred' 'waiting_lnm' %}" ></a>
+    <a href="{% url 'tasks-filtred' 'LNM' %}" >
     <div class="card-header">Waiting for LNM</div>
     <div class="card-body">
       <h5 class="card-title">Taskuri:{{lnm.count}} </h5>

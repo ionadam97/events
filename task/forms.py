@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, Select
 from .models import Task, Componenta, Label, Rezolutie 
 
 
@@ -10,8 +10,8 @@ class TaskForm(ModelForm):
                   'sumar', 'responsabil' ,'status']
 
         widgets = {
-            'locatia': TextInput(attrs={'list': 'locatie'}),
-            'egm': TextInput(attrs={'list': 'adj'}),
+            
+            'egm': Select(attrs={'list': 'adj'}),
             
          }
          

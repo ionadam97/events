@@ -5,10 +5,11 @@ from egm.models import Egm, Cabinet
 from location.models import Location
 import json
 import datetime
+from django.contrib.auth.decorators import login_required
 
 
 
-
+@login_required(login_url='login')
 def dashboard(request):
     open = Task.objects.filter(status='open')
     closed = Task.objects.filter(status='closed')
@@ -21,17 +22,24 @@ def dashboard(request):
         'vnet':vnet,'cmac':cmac,'lnm':lnm}
     return render(request, 'task/dashboard.html', context)
 
+
+@login_required(login_url='login')
 def taskFilter(request, pk):
     value = pk
-    tasks = Task.objects.filter(status=value)
-
-
-    context = {'tasks':tasks}
+    componente = Componenta.objects.all()
+    cabinete = Cabinet.objects.all()
+    egms = Egm.objects.all()
+    rezolutii = Rezolutie.objects.all()
+    labels = Label.objects.all()
+    tasks = Task.objects.all()
+    locatii = Location.objects.all()
+    context = {'tasks':tasks, 'rezolutii':rezolutii, 'labels':labels,'value':value,
+    'componente':componente, 'cabinete':cabinete, 'egms':egms, 'locatii':locatii}
     return render(request, 'task/tasks.html', context)
 
 
+@login_required(login_url='login')
 def tasks(request):
-   
     componente = Componenta.objects.all()
     cabinete = Cabinet.objects.all()
     egms = Egm.objects.all()
@@ -44,13 +52,10 @@ def tasks(request):
     return render(request, 'task/tasks.html', context)
 
 
-
+@login_required(login_url='login')
 def task(request, pk):
     task = Task.objects.get(nr=pk)
-
-    profile = request.user.profile
     form = TaskForm(instance=task)
-
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid:
@@ -60,9 +65,8 @@ def task(request, pk):
     context = {'task':task, 'form':form}
     return render(request, 'task/task.html', context)
 
-
+@login_required(login_url='login')
 def createTask(request):
-    locatii = Location.objects.all()
     egm = list(Egm.objects.values('id','serie','locatia_id'))
     profile = request.user.profile
     form = TaskForm()
@@ -79,13 +83,12 @@ def createTask(request):
             task.save()
             return redirect('tasks')
         
-    context = {'form': form, 'listaJs':json.dumps(egm),'locatii':locatii}
+    context = {'form': form, 'listaJs':json.dumps(egm)}
     return render(request, 'task/task_form.html', context)
 
 
-
+@login_required(login_url='login')
 def edithTask(request, pk):
-    locatii = Location.objects.all()
     egm = list(Egm.objects.values('id','serie','locatia_id'))
     task = Task.objects.get(nr=pk)
     now = datetime.datetime.now()
@@ -106,11 +109,11 @@ def edithTask(request, pk):
         
             return redirect('task',pk=task.nr )
 
-    context = {'task':task, 'form':form, 'listaJs':json.dumps(egm),'locatii':locatii}
+    context = {'task':task, 'form':form, 'listaJs':json.dumps(egm)}
     return render(request, 'task/task_form.html', context)
 
 
-
+@login_required(login_url='login')
 def createComponenta(request):
     form = ComponentaForm()
 
@@ -124,7 +127,7 @@ def createComponenta(request):
     return render(request, 'task/form.html', context)
 
 
-
+@login_required(login_url='login')
 def createRezolutie(request):
     form = RezolutieForm()
 
@@ -138,7 +141,7 @@ def createRezolutie(request):
     return render(request, 'task/form.html', context)
 
 
-
+@login_required(login_url='login')
 def createLabel(request):
     form = LabelForm()
 

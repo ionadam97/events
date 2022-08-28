@@ -3,78 +3,150 @@
 <a type="button" class="btn btn-primary" href="{% url 'tasks' %}">inapoi</a>
 <a type="button" class="btn btn-primary" href="{% url 'edith-task' task.nr %}">Edith</a>
 
-<div class="text-center">
-      <div class="row text-bg-info p-2">
-        <div class="col">Numar Task</div>
-        <div class="col">Locatia</div>
-        <div class="col">Egm</div>
-        <div class="col">Model</div>
-        <div class="col">Platforma</div>
-      </div>
-    
-      <div class="row text-bg-info p-2">
-        <div class="col">{{task.nr}}</div>
-        <div class="col">{{task.locatia.numar}}</div>
-        <div class="col">{{task.egm.serie}}</div>
-        <div class="col">{{task.egm.cabinet}}</div>
-        <div class="col">{{task.egm.platforma}}</div>
-      </div>
-    
-      <div class="row text-bg-secondary p-2">
-        <div class="col">Data creare</div>
-        <div class="col">Creator Task</div>
-        <div class="col" id="tit">Informator</div>
-        <div class="col">Componenta</div>
-        <div class="col">Label</div>
-      </div>
-    
-      <div class="row text-bg-secondary p-2">
-        <div class="col">{{task.created}}</div>
-        <div class="col" >{{task.owner}}</div>
-        <div class="col" id="informat">{{task.informatorul}}</div>
-        <div class="col" id="comp">{{task.componenta}}</div>
-        <div class="col">{{task.label}}</div>
-      </div>
-    
-      <div class="row text-bg-light">
-        <div class="col">Problema:</div>
-        <div class="col">Solutie:</div>
-        <div class="col">Sumar:</div>
-      </div>
-    
-      <div class="row text-bg-light">
-        <div class="col">{{task.problema}}</div>
-        <div class="col">{{task.solutie}}</div>
-        <div class="col">{{task.sumar}}</div>
-      </div>
-    
-      {% if task.status == 'closed' %}
-      <div class="row text-bg-success">
-        {% else %}
-        <div class="row text-bg-warning">
-          {% endif %}
-          <div class="col">Responsabil</div>
-          <div class="col">Rezolutie</div>
-          <div class="col">Status</div>
-          <div class="col">Data inchidere</div>
-          <div class="col">Supervisor</div>
-        </div>
-    
-        {% if task.status == 'closed' %}
-        <div class="row text-bg-success">
-          {% else %}
-          <div class="row text-bg-warning">
-            {% endif %}
-            <div class="col">{{task.responsabil}}</div>
-            <div class="col">{{task.rezolutie}}</div>
-            <div class="col">{{task.status}}</div>
-            <div class="col">{{task.data_inchidere}}</div>
-            <div class="col">{{task.supervisor}}</div>
+
+        <div class="container-md  text-center">
+          <div class="row p-2 font-weight-bold">
+
+            <div class="col ">
+              <div class="p-3 hm-size border ">
+                <div>Nr Task:</div>
+                <div>{{task.nr}}</div>
+              </div>
+            </div>
+
+            <div class="col ">
+              <div class="p-3 hm-size border ">
+                <div>Data creare:</div>
+                <div>{{task.created|date:"d.m.y H:i"}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Inregistrat de:</div>
+                <div>{{task.owner}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Locatia:</div>
+                <div>{{task.locatia}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Informator:</div>
+                <div>{{task.informatorul}}</div>
+              </div>
+            </div>
+            
           </div>
-        </div>
+          <div class="row p-2 font-weight-bold">
+
+            <div class="col">
+              <div class="p-3 hm-size border  ">
+                <div>Componenta:</div>
+                <div>{{task.componenta}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Label:</div>
+                <div>{{task.label}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Egm:</div>
+                <div>{{task.egm.serie}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Model:</div>
+                <div>{{task.egm.cabinet}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Platforma:</div>
+                <div>{{task.egm.platforma}}</div>
+              </div>
+            </div>
+            
           </div>
+
+          <div class="row p-2 font-weight-bold">
+
+            <div class="col-4">
+              <div class="p-3 hM-size border ">
+                <div>Problema:</div>
+                <div>{{task.problema}}</div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="p-3 hM-size border ">
+                <div>Solutie:</div>
+                <div>{{task.solutie}}</div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="p-3 hM-size border ">
+                <div>Sumar:</div>
+                <div>{{task.sumar}}</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row p-2 font-weight-bold">
+
+            <div class="col">
+              <div class="p-3 hm-size border  ">
+                <div>Responsabil:</div>
+                <div>{{task.responsabil}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Rezolutie:</div>
+                <div>{{task.rezolutie}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Status:</div>
+                <div>{{task.status}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Data inchidere:</div>
+                <div>{{task.data_inchidere|date:"d.m.y H:i"}}</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="p-3 hm-size border ">
+                <div>Supervisor:</div>
+                <div>{{task.supervisor}}</div>
+              </div>
+            </div>
+            
+          </div>
+          
         </div>
-    
     {% endblock %}
   
 

@@ -1,7 +1,8 @@
 {% extends 'main.html' %}
-
+{% load static %}
 
 {% block content %}
+
 <div ><h4 id="fil" style="display: none">Filtru:</h4></div>
 
 <div class=" text-center  tableFixHead">
@@ -86,15 +87,15 @@
 
         <tbody >
         {% for task in tasks %}
-        <tr>
-          <th class="px-1"><a href="{% url 'task' task.nr %}">{{task.nr}}</a></th>
+        <tr > 
+          <th class="px-1"><a  href="{% url 'task' task.nr %}">{{task.nr}}</a></th>
           <td class="px-1">{{task.created|date:"H:i d.m.y"}}</td>
           <td class="px-1">{{task.locatia.numar}}</td>
           <td class="px-1">{{task.egm.serie}}</td>
           <td class="px-1">{{task.egm.cabinet}}</td>
           <td class="px-1">{{task.componenta}}</td>
           <td class="px-1">{{task.label}}</td>
-          <td class="px-1" ><div class="text-start">{{task.problema}}</div></td>
+          <td class="px-1" ><a onclick="return false" ondblclick="location=this.href" href="{% url 'task' task.nr %}"><div class="text-start">{{task.problema}}</div></a></td>
           <td class="px-1"><div class="text-start">{{task.solutie}}</div></td>
           <td class="px-1">{{task.responsabil}}</td>
           <td class="px-1">{{task.rezolutie}}</td>
@@ -111,12 +112,13 @@
           {% elif task.status == 'waiting_lnm' %}
           <td class="text-bg-primary px-1">{{task.get_status_display}}</td>
           {% endif %}
+      
         </tr>
         {% endfor %}
       </tbody>
       </table>
 </div>
 
-
-
+<script> if('{{value}}' ){var value = '{{value}}'}</script>
+<script src="{% static 'js/tasks.js' %}"></script>
   {% endblock %}

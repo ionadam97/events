@@ -39,7 +39,7 @@ def logoutUser(request):
 
 
 
-
+@login_required(login_url='login')
 def profiles(request):
    
     profiles = Profile.objects.all
@@ -60,17 +60,11 @@ def userProfile(request, pk):
 @login_required(login_url='login')
 def userAccount(request):
     profile = request.user.profile
-
-
-
     context = {'profile': profile}
     return render(request, 'user/account.html', context)
 
 
 @login_required(login_url='login')
 def edithAccount(request):
-
-
-
     context = {}
     return render(request, 'user/profile_form.html', context)

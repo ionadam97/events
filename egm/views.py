@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from .forms  import EgmForm, CabinetForm, PlatformForm
 from location.models import Location
 from .models import Egm, Cabinet, Platform
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+@login_required(login_url='login')
 def egm(request):
     cabinete = Cabinet.objects.all()
     egms = Egm.objects.all()
@@ -13,19 +16,22 @@ def egm(request):
                 "locatii":locatii, 'platforme':platforme}
     return render(request, 'egm/egm.html', context)
 
+
+@login_required(login_url='login')
 def platform(request):
     platforme = Platform.objects.all()
-
     context = {'platforme':platforme}
     return render(request, 'egm/platforme.html', context)
 
+
+@login_required(login_url='login')
 def cabinet(request):
     cabinete = Cabinet.objects.all()
-
     context = {'cabinete':cabinete}
     return render(request, 'egm/cabinet.html', context)
 
 
+@login_required(login_url='login')
 def createEgm(request):
     form = EgmForm()
     value = 'egm'
@@ -38,7 +44,7 @@ def createEgm(request):
     context = {'form': form, 'value':value}
     return render(request, 'egm/egm_form.html', context)
 
-
+@login_required(login_url='login')
 def createCabinet(request):
     form = CabinetForm()
     value = 'cabinet'
@@ -51,7 +57,7 @@ def createCabinet(request):
     context = {'form': form,'value':value}
     return render(request, 'egm/egm_form.html', context)
 
-
+@login_required(login_url='login')
 def createPlatform(request):
     form = PlatformForm()
     value = 'platform'
