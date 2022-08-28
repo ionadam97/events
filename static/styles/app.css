@@ -32,9 +32,14 @@
 .hm-size{
   background-color: #cfdbdf;
   height: 5rem;
+  
 }
 
 .hM-size{
   background-color: #cfdbdf;
-  min-height: 18rem;
+  min-height: 10rem;
+}
+.hM-sum{
+  background-color: #cfdbdf;
+  min-height: 7rem;
 }
