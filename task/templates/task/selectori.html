@@ -1,0 +1,99 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<main>
+  <div class="row text-center ">
+    <div class="col-4">
+        <div class="row">
+            <div class="col"> <h2>Componenta</h2></div>
+            <div class="col"><a class="btn btn-primary" href="{% url 'componenta-form' %}?next=/selectori">Adauga componenta</a></div>
+        </div>
+      <div class=" text-center  tableFixHead p-3">
+        <table class="table  table-bordered table-hover " id="tabel">
+          <thead >
+          <tr >
+            <th scope="col" >Nr</th>
+            <th scope="col">Componenta</th>
+          </tr>
+          </thead>
+          <tbody >
+          {% for componenta in components %}
+          <tr>
+            <td  class="fw-bold" ><a href="{% url 'edith-componenta' componenta.id %}?next=/selectori">{{componenta.id}}</a></td>
+            <td>{{componenta}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    </div>
+
+    <div class="col-4">
+
+        <div class="row">
+            <div class="col"> <h2>Label</h2></div>
+            <div class="col"><a  class="btn btn-primary"href="{% url 'label-form' %}?next=/selectori">Adauga label</a></div>
+        </div>
+
+      <div class=" text-center  tableFixHead p-3">
+        <table class="table  table-bordered table-hover " id="tabel">
+          <thead >
+          <tr >
+            <th scope="col" >Nr</th>
+            <th scope="col">Label</th>
+          </tr>
+          </thead>
+          <tbody >
+          {% for label in labels %}
+          <tr>
+            <td  class="fw-bold" ><a href="{% url 'edith-label' label.id %}?next=/selectori">{{label.id}}</a></td>
+            <td>{{label}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    </div>
+
+
+    <div class="col-4">
+
+        <div class="row">
+            <div class="col"> <h2>Rezolutie</h2></div>
+            <div class="col"><a class="btn btn-primary" href="{% url 'rezolutie-form' %}?next=/selectori">Adauga rezolutie</a></div>
+        </div>
+      
+
+          <div class=" text-center  tableFixHead p-3">
+        <table class="table  table-bordered table-hover " id="tabel">
+          <thead >
+          <tr >
+            <th scope="col" >Nr</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody >
+          {% for rezolutie in rezolutii %}
+          <tr>
+            <td  class="fw-bold" ><a href="{% url 'edith-rezolutie' rezolutie.id %}?next=/selectori">{{rezolutie.id}}</a></td>
+            <td>{{rezolutie}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+</main>
+
+
+  {% endblock %}

@@ -3,36 +3,33 @@
 
 {% block content %}
 <main>
-  <div class="row text-center">
+  <div class="row text-center ">
     <div class="col">
       <a class="btn btn-primary" href="{% url 'egm' %}">Adj-uri</a>
-      <a class="btn btn-primary" href="{% url 'egm-form' %}">Adauga egm</a>
+      <a class="btn btn-primary" href="{% url 'egm-form' %}?next=/egm/cabinet">Adauga egm</a>
     </div>
     <div class="col">
-      <a  class="btn btn-primary"href="{% url 'cabinet' %}">Cabinete</a>
-      <a  class="btn btn-primary"href="{% url 'cabinet-form' %}">Adauga cabinet</a>
+      <a  class="btn btn-primary"href="{% url 'cabinet-form' %}?next=/egm/cabinet">Adauga cabinet</a>
     </div>
     <div class="col">
       <a class="btn btn-primary" href="{% url 'platform' %}">Platforma</a>
-      <a class="btn btn-primary" href="{% url 'platform-form' %}">Adauga platforma</a>
+      <a class="btn btn-primary" href="{% url 'platform-form' %}?next=/egm/cabinet">Adauga platforma</a>
     </div>
   </div>
-  <br>
-  <div class=" text-center  tableFixHead">
+
+  <div class=" text-center  tableFixHead p-3">
     <table class="table  table-bordered table-hover " id="tabel">
       <thead >
       <tr >
         <th scope="col" >Nr</th>
         <th scope="col">Cabinet</th>
-        <th scope="col"></th>
       </tr>
       </thead>
       <tbody >
       {% for cabinet in cabinete %}
       <tr>
-        <td  class="fw-bold" ><a href="">{{cabinet.id}}</a></td>
+        <td  class="fw-bold" ><a href="{% url 'cabinet-edith' cabinet.id %}?next=/egm/cabinet">{{cabinet.id}}</a></td>
         <td>{{cabinet}}</td>
-        <td>xx</td>
       </tr>
       {% endfor %}
     </tbody>

@@ -2,13 +2,9 @@
 
 
 {% block content %}
-{% if value == 'egm' %}
-<a class="btn btn-primary" href="{% url 'egm' %}">Egm</a>
-{% elif value == 'cabinet' %}
-<a class="btn btn-primary" href="{% url 'cabinet' %}">Cabinete</a>
-{% elif value == 'platform' %}
-<a class="btn btn-primary" href="{% url 'platform' %}">Platforme</a>
-{% endif %}
+
+<a class="btn btn-primary" href="{{request.GET.next}}">Inapoi</a>
+
     <div class=" form_in col-4 container rounded">
         
         <br>

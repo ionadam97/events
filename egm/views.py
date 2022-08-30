@@ -1,3 +1,4 @@
+from calendar import c
 from django.shortcuts import render, redirect
 from .forms  import EgmForm, CabinetForm, PlatformForm
 from location.models import Location
@@ -71,4 +72,41 @@ def createPlatform(request):
     return render(request, 'egm/egm_form.html', context)
 
 
+@login_required(login_url='login')
+def edithEgm(request, pk):
+    egm = Egm.objects.get(id=pk)
+    form = EgmForm(instance=egm)
+    if request.method == 'POST':
+        form = EgmForm(request.POST, instance=egm)
+        if form.is_valid:
+            form.save()
+            return redirect('egm')
+        
+    context = {'form': form}
+    return render(request, 'egm/egm_form.html', context)
 
+@login_required(login_url='login')
+def edithCabinet(request, pk):
+    cabinet = Cabinet.objects.get(id=pk)
+    form = CabinetForm(instance=cabinet)
+    if request.method == 'POST':
+        form = CabinetForm(request.POST, instance=cabinet)
+        if form.is_valid:
+            form.save()
+            return redirect('cabinet')
+        
+    context = {'form': form}
+    return render(request, 'egm/egm_form.html', context)
+
+@login_required(login_url='login')
+def edithPlatform(request, pk):
+    platform = Platform.objects.get(id=pk)
+    form = PlatformForm(instance=platform)
+    if request.method == 'POST':
+        form = PlatformForm(request.POST, instance=platform)
+        if form.is_valid:
+            form.save()
+            return redirect('platform')
+        
+    context = {'form': form}
+    return render(request, 'egm/egm_form.html', context)

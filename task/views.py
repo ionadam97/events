@@ -7,7 +7,7 @@ import json
 import datetime
 from django.contrib.auth.decorators import login_required
 
-
+# views
 
 @login_required(login_url='login')
 def dashboard(request):
@@ -65,6 +65,20 @@ def task(request, pk):
     context = {'task':task, 'form':form}
     return render(request, 'task/task.html', context)
 
+
+@login_required(login_url='login')
+def selectori(request):
+    labels = Label.objects.all()
+    components = Componenta.objects.all()
+    rezolutii = Rezolutie.objects.all()
+    context = {'labels':labels, 'components':components, 'rezolutii':rezolutii}
+    return render(request, 'task/selectori.html', context)
+
+
+
+# create
+
+
 @login_required(login_url='login')
 def createTask(request):
     egm = list(Egm.objects.values('id','serie','locatia_id'))
@@ -86,6 +100,51 @@ def createTask(request):
     context = {'form': form, 'listaJs':json.dumps(egm)}
     return render(request, 'task/task_form.html', context)
 
+
+
+@login_required(login_url='login')
+def createComponenta(request):
+    form = ComponentaForm()
+
+    if request.method == 'POST':
+        form = ComponentaForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('selectori')
+
+    context = {'form':form}
+    return render(request, 'task/form.html', context)
+
+
+@login_required(login_url='login')
+def createRezolutie(request):
+    form = RezolutieForm()
+
+    if request.method == 'POST':
+        form = RezolutieForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('selectori')
+
+    context = {'form':form}
+    return render(request, 'task/form.html', context)
+
+
+@login_required(login_url='login')
+def createLabel(request):
+    form = LabelForm()
+
+    if request.method == 'POST':
+        form = LabelForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('selectori')
+
+    context = {'form':form}
+    return render(request, 'task/form.html', context)
+
+
+# edith
 
 @login_required(login_url='login')
 def edithTask(request, pk):
@@ -114,42 +173,51 @@ def edithTask(request, pk):
 
 
 @login_required(login_url='login')
-def createComponenta(request):
-    form = ComponentaForm()
-
+def edithComponenta(request, pk):
+    componenta = Componenta.objects.get(id=pk)
+    form = ComponentaForm(instance=componenta)
     if request.method == 'POST':
-        form = ComponentaForm(request.POST)
+        form = ComponentaForm(request.POST, instance=componenta)
         if form.is_valid:
             form.save()
-            return redirect('tasks')
-
-    context = {'form':form}
+            return redirect('selectori')
+        
+    context = {'form': form}
     return render(request, 'task/form.html', context)
 
 
 @login_required(login_url='login')
-def createRezolutie(request):
-    form = RezolutieForm()
-
+def edithLabel(request, pk):
+    label = Label.objects.get(id=pk)
+    form = LabelForm(instance=label)
     if request.method == 'POST':
-        form = RezolutieForm(request.POST)
+        form = LabelForm(request.POST, instance=label)
         if form.is_valid:
             form.save()
-            return redirect('tasks')
-
-    context = {'form':form}
+            return redirect('selectori')
+        
+    context = {'form': form}
     return render(request, 'task/form.html', context)
+
 
 
 @login_required(login_url='login')
-def createLabel(request):
-    form = LabelForm()
-
+def edithRezolutie(request, pk):
+    rezolutie = Rezolutie.objects.get(id=pk)
+    form = RezolutieForm(instance=rezolutie)
     if request.method == 'POST':
-        form = LabelForm(request.POST)
+        form = RezolutieForm(request.POST, instance=rezolutie)
         if form.is_valid:
             form.save()
-            return redirect('tasks')
-
-    context = {'form':form}
+            return redirect('selectori')
+        
+    context = {'form': form}
     return render(request, 'task/form.html', context)
+
+
+
+
+
+
+
+

@@ -31,7 +31,7 @@
   <tbody>
     {% for location in locations %}
     <tr>
-      <th scope="row">{{location.numar}}</th>
+      <th scope="row"><a href="{% url 'location-edith' location.id %}">{{location.numar}}</a></th>
       <td>{{location.name}}</td>
       <td>{{location.address}}</td>
       <td>{{location.telefon}}</td>
@@ -39,8 +39,8 @@
       <td>{{location.manager.nume}}</td>
       <td>{{location.manager.telefon}}</td>
       <td>{{location.manager.email}}</td>
-      <td>{{location.data_deschidere}}</td>
-      <td>{{location.data_inchidere}}</td>
+      <td>{{location.data_deschidere|date:"d.m.y"}}</td>
+      <td>{{location.data_inchidere|date:"d.m.y"}}</td>
       <td>{{location.status}}</td>
     </tr>
     {% endfor %}

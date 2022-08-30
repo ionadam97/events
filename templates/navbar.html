@@ -12,27 +12,10 @@
                    <a href="{% url 'tasks'%}">Toate taskurile</a>
                    <a href="{% url 'locations' %}">Locatii</a>
                    <a href="{% url 'profiles' %}">Utilizatori</a>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Egm</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li><a href="{% url 'egm' %}">Egm</a></li>
-                        <li><a href="{% url 'egm-form' %}">Adauga Egm</a></li>
-                        <li><a href="{% url 'cabinet-form' %}">Adauga tipul de cabinet</a></li>
-                        <li><a href="{% url 'platform-form' %}">Adauga Platforma</a></li>
-                        
-                    </ul>
+                   <a href="{% url 'egm' %}">Egm</a>
+                   <a href="{% url 'selectori' %}">Selectori</a>
                 </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li><a href="{% url 'componenta-form' %}">Componenta</a></li>
-                        <li><a href="{% url 'label-form' %}">Label</a></li>
-                        <li><a href="{% url 'rezolutie-form' %}">Rezolutie</a></li>
-                    </ul>
-                </li>
-                
-                <li></li>
-                <li></li>
-                <li><a href="#">Contact</a></li>
+
             </ul>
         </nav>
 
@@ -45,7 +28,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                    </button> <li class="nav-item active "><a  class="text-white fw-bold" href="{% url 'task-form' %}">Add Task +</a></li>
+                    </button> <li class="nav-item active "><a  class="text-white fw-bold" href="{% url 'task-form' %}?next=/">Add Task +</a></li>
                     <button class="btn btn-light d-inline-block d-lg-none  ml-auto " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>

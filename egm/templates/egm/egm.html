@@ -3,22 +3,21 @@
 
 {% block content %}
 <main>
-  <div class="row text-center">
+  <div class="row text-center ">
     <div class="col">
-      <a class="btn btn-primary" href="{% url 'egm' %}">Adj-uri</a>
-      <a class="btn btn-primary" href="{% url 'egm-form' %}">Adauga egm</a>
+      <a class="btn btn-primary" href="{% url 'egm-form' %}?next=/egm">Adauga egm</a>
     </div>
     <div class="col">
       <a  class="btn btn-primary"href="{% url 'cabinet' %}">Cabinete</a>
-      <a  class="btn btn-primary"href="{% url 'cabinet-form' %}">Adauga cabinet</a>
+      <a  class="btn btn-primary"href="{% url 'cabinet-form' %}?next=/egm">Adauga cabinet</a>
     </div>
     <div class="col">
       <a class="btn btn-primary" href="{% url 'platform' %}">Platforma</a>
-      <a class="btn btn-primary" href="{% url 'platform-form' %}">Adauga platforma</a>
+      <a class="btn btn-primary" href="{% url 'platform-form'%}?next=/egm">Adauga platforma</a>
     </div>
   </div>
-  <br>
-  <div class=" text-center  tableFixHead">
+ 
+  <div class=" text-center  tableFixHead p-3">
     <table class="table  table-bordered table-hover " id="tabel">
       <thead >
       <tr >
@@ -59,18 +58,16 @@
               {% endfor %}
             </ul>
         </th>
-        <th scope="col"></th>
       </tr>
       </thead>
       <tbody >
       {% for egm in egms %}
       <tr>
-        <td  class="fw-bold" ><a href="">{{egm.id}}</a></td>
+        <td  class="fw-bold" ><a href="{% url 'egm-edith' egm.id %}?next=/egm">{{egm.id}}</a></td>
         <td>{{egm.locatia.numar}}</td>
         <td>{{egm.serie}}</td>
         <td>{{egm.cabinet}}</td>
         <td>{{egm.platforma}}</td>
-        <td>xx</td>
       </tr>
       {% endfor %}
     </tbody>

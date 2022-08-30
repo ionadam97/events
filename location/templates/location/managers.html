@@ -30,10 +30,10 @@
   <tbody>
     {% for manager in managers %}
     <tr>
-      <th scope="row">{{manager.nume}}</th>
+      <th scope="row"><a href="{% url 'manager-edith' manager.id %}">{{manager.nume}}</a></th>
       <td>{{manager.email}}</td>
       <td>{{manager.telefon}}</td>
-      <td>x</td>
+      <td><a href="{% url 'manager-delete' manager.id %}?next=/location/managers">Delete</a></td>
     </tr>
     {% endfor %}
   </tbody>

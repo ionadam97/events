@@ -2,9 +2,7 @@
 {% load static %}
 
 {% block content %}
-
-            <div class="p-2"><a type="button" class="btn btn-primary " href="{% url 'tasks' %}">inapoi</a></div>
-            
+            <div class="p-2"><a type="button" class="btn btn-primary " href="{{request.GET.next}}">Inapoi</a></div>
 
             <form  method="POST" >
                 <div class="row p-3 g-3">

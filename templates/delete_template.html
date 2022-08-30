@@ -3,18 +3,18 @@
 
 
 
-<main class="formPage my-xl">
-    <div class="content-box">
-        <div class="formWrapper">
-            <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+<main >
+    <div class="col-5 container rounded bg-color">
+        <div class="container  p-3">
+            <a class="btn btn-primary" href="{{request.GET.next}}">Inapoi</a>
             <br>
 
             <form class="form" method="POST" action="">
                 {% csrf_token %}
-                <p>Are you sure you want to delete "{{object}}" ? </p>
-                <a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}"> Cancel </a>
+                <p class="h4 p-5">Are you sure you want to delete "{{object}}" ? </p>
+                <a class="btn btn-secondary " href="{{request.GET.next}}"> Cancel </a>
                
-                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Confirm" />
+                <input class="btn btn-danger" type="submit" value="Confirm" />
             </form>
         </div>
     </div>
