@@ -2,12 +2,21 @@
   --color-sub: #2d2d39;
   --color-sub1: #12528f;
 }
-
+.log-in{
+  background-color: var(--color-sub);
+  min-width: 25rem;
+}
 .form_in{
   background-color: #93a5aa;
   min-width: 30rem;
   min-height: 10rem;
 }
+
+.card-user{
+  min-width: 25rem;
+  max-width: 35rem;
+}
+
 
 .cardsize{
   max-width: 25rem;

@@ -5,16 +5,18 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True, blank=True)
+        User, on_delete=models.DO_NOTHING, null=True, blank=True)
     nume = models.CharField(max_length=200, blank=True, null=True)
     prenume = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=500, blank=True, null=True)
+    email_serviciu = models.EmailField(max_length=500,unique=True, blank=True, null=True)
     username = models.CharField(max_length=200, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     functie = models.CharField(max_length=200, blank=True, null=True)
     profile_image = models.ImageField(null=True, blank=True, upload_to='profiles/', default='profiles/user-default.png')
-    url_github = models.CharField(max_length=200, blank=True, null=True)
     url_facebook = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
+    phone_serviciu = models.CharField(max_length=200, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, 
                         primary_key=True, editable=False)
