@@ -6,14 +6,20 @@
   <div class="row text-center">
     <div class="col">
       <a class="btn btn-primary" href="{% url 'egm' %}">Adj-uri</a>
+      {% if request.user.is_staff %}
       <a class="btn btn-primary" href="{% url 'egm-form' %}?next=/egm/platform">Adauga egm</a>
+      {% endif %}
     </div>
     <div class="col">
       <a  class="btn btn-primary"href="{% url 'cabinet' %}">Cabinete</a>
+      {% if request.user.is_staff %}
       <a  class="btn btn-primary"href="{% url 'cabinet-form' %}?next=/egm/platform">Adauga cabinet</a>
+      {% endif %}
     </div>
     <div class="col">
+      {% if request.user.is_staff %}
       <a class="btn btn-primary" href="{% url 'platform-form' %}?next=/egm/platform">Adauga platforma</a>
+      {% endif %}
     </div>
   </div>
 
@@ -28,7 +34,11 @@
       <tbody >
       {% for platform in platforme %}
       <tr>
+        {% if request.user.is_staff %}
         <td  class="fw-bold" ><a href="{% url 'platform-edith' platform.id %}?next=/egm/platform">{{platform.id}}</a></td>
+        {% else %}
+        <td  class="fw-bold" >{{platform.id}}</td>
+        {% endif %}
         <td>{{platform}}</td>
       </tr>
       {% endfor %}

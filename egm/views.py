@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .forms  import EgmForm, CabinetForm, PlatformForm
 from location.models import Location
 from .models import Egm, Cabinet, Platform
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 @login_required(login_url='login')
@@ -31,7 +31,7 @@ def cabinet(request):
     context = {'cabinete':cabinete}
     return render(request, 'egm/cabinet.html', context)
 
-
+@permission_required('is_staff')
 @login_required(login_url='login')
 def createEgm(request):
     form = EgmForm()
@@ -44,7 +44,7 @@ def createEgm(request):
         
     context = {'form': form, 'value':value}
     return render(request, 'egm/egm_form.html', context)
-
+@permission_required('is_staff')
 @login_required(login_url='login')
 def createCabinet(request):
     form = CabinetForm()
@@ -58,6 +58,8 @@ def createCabinet(request):
     context = {'form': form,'value':value}
     return render(request, 'egm/egm_form.html', context)
 
+
+@permission_required('is_staff')
 @login_required(login_url='login')
 def createPlatform(request):
     form = PlatformForm()
@@ -72,6 +74,7 @@ def createPlatform(request):
     return render(request, 'egm/egm_form.html', context)
 
 
+@permission_required('is_staff')
 @login_required(login_url='login')
 def edithEgm(request, pk):
     egm = Egm.objects.get(id=pk)
@@ -85,6 +88,8 @@ def edithEgm(request, pk):
     context = {'form': form}
     return render(request, 'egm/egm_form.html', context)
 
+
+@permission_required('is_staff')
 @login_required(login_url='login')
 def edithCabinet(request, pk):
     cabinet = Cabinet.objects.get(id=pk)
@@ -98,6 +103,8 @@ def edithCabinet(request, pk):
     context = {'form': form}
     return render(request, 'egm/egm_form.html', context)
 
+
+@permission_required('is_staff')
 @login_required(login_url='login')
 def edithPlatform(request, pk):
     platform = Platform.objects.get(id=pk)

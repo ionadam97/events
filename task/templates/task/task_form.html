@@ -9,7 +9,7 @@
                 {% csrf_token %}
                 {% for field in form %}
                 
-                {% if field == form.status and request.user.profile.functie != 'Supervisor HD'%}
+                {% if field == form.status and request.user.is_staff == False %}
                 <!-- Input:Text -->
                 <div class=" col-md-4 visually-hidden">
                     <label >{{field.label}}:</label>

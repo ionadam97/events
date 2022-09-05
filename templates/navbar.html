@@ -13,7 +13,9 @@
                    <a href="{% url 'locations' %}">Locatii</a>
                    <a href="{% url 'profiles' %}">Utilizatori</a>
                    <a href="{% url 'egm' %}">Egm</a>
+                   {% if request.user.is_staff %}
                    <a href="{% url 'selectori' %}">Selectori</a>
+                   {% endif %}
                 </li>
 
             </ul>

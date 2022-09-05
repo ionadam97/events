@@ -5,15 +5,21 @@
 <main>
   <div class="row text-center ">
     <div class="col">
+      {% if request.user.is_staff %}
       <a class="btn btn-primary" href="{% url 'egm-form' %}?next=/egm">Adauga egm</a>
+      {% endif %}
     </div>
     <div class="col">
       <a  class="btn btn-primary"href="{% url 'cabinet' %}">Cabinete</a>
+      {% if request.user.is_staff %}
       <a  class="btn btn-primary"href="{% url 'cabinet-form' %}?next=/egm">Adauga cabinet</a>
+      {% endif %}
     </div>
     <div class="col">
       <a class="btn btn-primary" href="{% url 'platform' %}">Platforma</a>
+      {% if request.user.is_staff %}
       <a class="btn btn-primary" href="{% url 'platform-form'%}?next=/egm">Adauga platforma</a>
+      {% endif %}
     </div>
   </div>
   <div ><h4 id="fil" style="display: none">Filtru:</h4></div>
@@ -63,7 +69,12 @@
       <tbody >
       {% for egm in egms %}
       <tr>
+        {% if request.user.is_staff %}
         <td  class="fw-bold" ><a href="{% url 'egm-edith' egm.id %}?next=/egm">{{egm.id}}</a></td>
+        {% else %}
+        <td  class="fw-bold">{{egm.id}}</td>
+        {% endif %}
+
         <td>{{egm.locatia.numar}}</td>
         <td>{{egm.serie}}</td>
         <td>{{egm.cabinet}}</td>

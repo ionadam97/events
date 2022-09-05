@@ -23,7 +23,7 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['nume', 'prenume', 'email','location', 'url_facebook',
-                     'phone', 'phone_serviciu','profile_image']
+                     'phone', 'phone_serviciu','functie', 'profile_image']
         labels = {
             
             
