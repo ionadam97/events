@@ -3,6 +3,7 @@ from .models import Task, Rezolutie, Label, Componenta
 from .forms import TaskForm, ComponentaForm, RezolutieForm, LabelForm
 from egm.models import Egm, Cabinet
 from location.models import Location
+from django.contrib import messages
 import json
 import datetime
 from django.contrib.auth.decorators import login_required
@@ -95,6 +96,7 @@ def createTask(request):
                 if task.status == 'closed':
                     task.data_inchidere = now
             task.save()
+            messages.success(request, 'Task-ul a fost adaugat')
             return redirect('tasks')
         
     context = {'form': form, 'listaJs':json.dumps(egm)}

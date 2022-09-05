@@ -68,7 +68,7 @@ def activate(request, uidb64, token):
 
 def loginUser(request):
     if request.user.is_authenticated:
-        return redirect('profiles')
+        return redirect('account')
 
     if request.method == 'POST':
         username = request.POST['username'].lower()
@@ -77,7 +77,7 @@ def loginUser(request):
         try:
             user = User.objects.get(username=username)
         except:
-            messages.error(request, 'Username does not exist')
+            messages.error(request, 'Numele de utilizator nu există')
 
         user = authenticate(request, username=username, password=password)
 
@@ -86,13 +86,13 @@ def loginUser(request):
             return redirect(request.GET['next'] if 'next' in request.GET else 'account')
 
         else:
-            messages.error(request, 'Username OR password is incorrect')
+            messages.error(request, 'Numele de utilizator sau Parola sunt incorecte')
 
     return render(request, 'user/login.html')
 
 def logoutUser(request):
     logout(request)
-    messages.info(request,'User was logged out!')
+    messages.warning(request,'Utilizatorul a fost deconectat!')
     return redirect('login')
 
 
