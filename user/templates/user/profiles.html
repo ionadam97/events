@@ -6,7 +6,7 @@
     {% for profile in profiles %}
     <div class="col-4 card-user">
       <div class="col-10">
-      <a href="{% url 'user_profile' profile.id %}" class="card">
+      <a href="{% url 'user_profile' profile.id %}?next=/user/profiles" class="card">
         <img src="{{profile.imageURL}}" class="card-img-top" alt="image">
         <div class="card-body">
           <h5 class="card-title">{{profile.username}}</h5>

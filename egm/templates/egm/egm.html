@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% load static %}
 
 {% block content %}
 <main>
@@ -16,7 +16,7 @@
       <a class="btn btn-primary" href="{% url 'platform-form'%}?next=/egm">Adauga platforma</a>
     </div>
   </div>
- 
+  <div ><h4 id="fil" style="display: none">Filtru:</h4></div>
   <div class=" text-center  tableFixHead p-3">
     <table class="table  table-bordered table-hover " id="tabel">
       <thead >
@@ -27,16 +27,16 @@
             <ul class="dropdown-menu">
               <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
               {% for locatia in locatii %}
-                <li class="btn dropdown-item "  onclick="filtru(this, 1)">{{locatia}}</aclas></li>
+                <li class="btn dropdown-item " value="{{locatia.id}}" onclick="filtru(this, 1, value)">{{locatia}}</aclas></li>
               {% endfor %}
             </ul>
         </th>
         <th scope="col"> 
           <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Serie</a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" id="id_egm">
               <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
               {% for egm in egms %}
-                <li class="btn dropdown-item "  onclick="filtru(this, 2)">{{egm}}</aclas></li>
+                <li class="btn dropdown-item " value="{{egm.locatia_id}}"  onclick="filtru(this, 2)">{{egm}}</aclas></li>
               {% endfor %}
             </ul>
         </th>
@@ -75,8 +75,8 @@
 </div>
 
 
-
-
+<script> if('{{value}}' ){var value = '{{value}}'}</script>
+<script src="{% static 'js/tasks.js' %}"></script>
 </main>
 
 

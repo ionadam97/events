@@ -12,7 +12,7 @@ class Profile(models.Model):
     email_serviciu = models.EmailField(max_length=500,unique=True, blank=True, null=True)
     username = models.CharField(max_length=200, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    functie = models.CharField(max_length=200, blank=True, null=True)
+    functie = models.CharField(max_length=200, blank=True, null=True, default='Tehnician Electronica')
     profile_image = models.ImageField(null=True, blank=True, upload_to='profiles/', default='profiles/user-default.png')
     url_facebook = models.CharField(max_length=200, blank=True, null=True)
     phone = models.CharField(max_length=200, blank=True, null=True)

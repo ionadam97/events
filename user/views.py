@@ -2,22 +2,16 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from . models import Profile
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, get_user_model
 from .forms import RegisterForm, ProfileForm
 from django.contrib.auth.decorators import login_required
-
-from django.contrib.auth import get_user_model
-from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
-
-UserModel = get_user_model() 
 
 
 def registerUser(request):
@@ -25,30 +19,33 @@ def registerUser(request):
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+        
         if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.is_active = False
-            user.save()
+            to_email = form.cleaned_data.get('email')
+            if to_email.endswith('@novoinvestment.md'):
+                user = form.save(commit=False)
+                user.username = user.username.lower()
+                user.is_active = False
+                user.save()
 
-            # to get the domain of the current site  
-            current_site = get_current_site(request)  
-            mail_subject = 'Activation link has been sent to your email id'  
-            message = render_to_string('acc_active_email.html', {  
-                'user': user,  
-                'domain': current_site.domain,  
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
-                'token':account_activation_token.make_token(user),  
-            })  
-            to_email = form.cleaned_data.get('email')  
-            email = EmailMessage(  
-                        mail_subject, message, to=[to_email]  
-            )  
-            email.send()  
-            return HttpResponse('Please confirm your email address to complete the registration')
+                # to get the domain of the current site  
+                current_site = get_current_site(request)  
+                mail_subject = 'Linkul de activare a fost trimis la ID-ul tău de e-mail'  
+                message = render_to_string('acc_active_email.html', {  
+                    'user': user,  
+                    'domain': current_site.domain,  
+                    'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
+                    'token':account_activation_token.make_token(user),  
+                })  
+                
+                email = EmailMessage(  
+                            mail_subject, message, to=[to_email]  
+                )  
+                email.send()  
+                return HttpResponse('Vă rugăm să vă confirmați adresa de e-mail pentru a finaliza înregistrarea')
 
-            # login(request, user)
-            # return redirect('login')
+                # login(request, user)
+                # return redirect('login')
 
     context= {'form':form}
     return render(request, 'user/register.html', context)
@@ -64,9 +61,9 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):  
         user.is_active = True  
         user.save()  
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')  
+        return HttpResponse('Vă mulțumim pentru confirmarea prin e-mail. Acum vă puteți autentifica contul.')  
     else:  
-        return HttpResponse('Activation link is invalid!')  
+        return HttpResponse('Linkul de activare este nevalid!')  
 
 
 def loginUser(request):

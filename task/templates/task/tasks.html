@@ -14,19 +14,20 @@
           <th class="px-1" >
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Locatia</a>
                     <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
+                      <li class="btn dropdown-item"  onclick="filtru(this, 0)">All</li>
                       {% for locatia in locatii %}
-                        <li class="btn dropdown-item "  onclick="filtru(this, 1)">{{locatia}}</li>
+                        <li class="btn dropdown-item " value="{{locatia.id}}"  onclick="filtru(this, 1, value)">{{locatia}}</li>
                       {% endfor %}
                     </ul>
           </th>
           <th class="px-1"> 
             <a class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Serie</a>
-                    <ul class="dropdown-menu">
-                      <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
+                    <ul class="dropdown-menu" id="id_egm">
+                      <li class="btn dropdown-item" value="0" onclick="filtru(this, 0)">All</li>
                       {% for egm in egms %}
-                        <li class="btn dropdown-item "  onclick="filtru(this, 2)">{{egm}}</li>
+                      <li class="btn dropdown-item" value="{{egm.locatia_id}}" onclick="filtru(this, 2)">{{egm}}</li>
                       {% endfor %}
+                      
                     </ul>
           </th>
           <th class="px-1">
@@ -118,6 +119,7 @@
       </tbody>
       </table>
 </div>
+
 
 <script> if('{{value}}' ){var value = '{{value}}'}</script>
 <script src="{% static 'js/tasks.js' %}"></script>
