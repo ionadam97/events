@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'task.apps.TaskConfig',
     'user.apps.UserConfig',
     'egm.apps.EgmConfig',
-    'location.apps.LocationConfig'
+    'location.apps.LocationConfig',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -87,14 +89,22 @@ WSGI_APPLICATION = 'events.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':'events',
+#         'USER': 'postgres',
+#         'PASSWORD': 'initiez1',
+#         'HOST': 'localhost',
+#         'PORT': '5544',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'events',
-        'USER': 'postgres',
-        'PASSWORD': 'initiez1',
-        'HOST': 'localhost',
-        'PORT': '5544',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -157,5 +167,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE  = False
+
+AWS_ACCESS_KEY_ID = 'AKIA3QPHOHY3SKJLXCX3'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'events-adam'
+
 if os.getcwd() == '/app':
-    DEBUG = False
+    DEBUG = False 
