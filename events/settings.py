@@ -93,10 +93,10 @@ WSGI_APPLICATION = 'events.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'adam1',
-        'USER': 'adam1',
+        'NAME':'bd_2',
+        'USER': 'bd_2',
         'PASSWORD': 'Caminul1',
-        'HOST': 'database-1.ckpbmhqdl1ao.us-east-1.rds.amazonaws.com',
+        'HOST': 'database-1.cjhzttjhhned.eu-west-3.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -177,7 +177,7 @@ AWS_S3_FILE_OVERWRITE  = False
 
 AWS_ACCESS_KEY_ID = 'AKIA3QPHOHY3SKJLXCX3'
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'events-adam'
+AWS_STORAGE_BUCKET_NAME = 'events1-bucket'
 
 if os.getcwd() == '/app':
     DEBUG = False 
