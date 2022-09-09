@@ -1,21 +1,19 @@
-var idLocatie
-const locatia = document.getElementById('id_locatia');
+var idLocatie;
+const locatia = document.getElementById("id_locatia");
 const egm = document.getElementById("id_egm");
 
+locatia.addEventListener("change", getLocatia);
 
-locatia.addEventListener('change',  getLocatia);
-
-function getLocatia () {
+function getLocatia() {
   idLocatie = locatia.options[locatia.selectedIndex].value;
-  addEgm() 
+  addEgm();
 }
 
-
 function addEgm() {
-    egm.innerHTML = `<option value="">----------</option>`;
-    for (var i = 0; i < data.length; i++) {
-    if (data[i]['locatia_id'] == idLocatie ){
-      egm.innerHTML += `<option value="${data[i]['id']}">${data[i]['serie']}</option>`;
-      }
+  egm.innerHTML = `<option value="">----------</option>`;
+  for (var i = 0; i < data.length; i++) {
+    if (data[i]["locatia_id"] == idLocatie) {
+      egm.innerHTML += `<option value="${data[i]["id"]}">${data[i]["serie"]}</option>`;
     }
-    }
+  }
+}

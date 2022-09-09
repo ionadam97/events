@@ -1,22 +1,22 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% block content %}
 
-{% block content %}
-
-  <div class="row row-cols-1 row-cols-md-1 g-4">
-    {% for profile in profiles %}
-    <div class="col-4 card-user">
-      <div class="col-10">
-      <a href="{% url 'user_profile' profile.id %}?next=/user/profiles" class="card">
-        <img src="{{profile.imageURL}}" class="card-img-top" alt="image">
+<div class="row row-cols-1 row-cols-md-1 g-4">
+  {% for profile in profiles %}
+  <div class="col-4 card-user">
+    <div class="col-10">
+      <a
+        href="{% url 'user_profile' profile.id %}?next=/user/profiles"
+        class="card"
+      >
+        <img src="{{profile.imageURL}}" class="card-img-top" alt="image" />
         <div class="card-body">
           <h5 class="card-title">{{profile.username}}</h5>
           <p class="card-text">{{profile.functie|slice:"60"}}</p>
         </div>
       </a>
     </div>
-    </div>
-    {% endfor %}
-    
   </div>
+  {% endfor %}
+</div>
 
 {% endblock %}

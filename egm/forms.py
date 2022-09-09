@@ -15,8 +15,8 @@ class EgmForm(ModelForm):
         super(EgmForm, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
-            field.widget.attrs.update({'class':'form-control'})
-        
+            field.widget.attrs.update({'class': 'form-control'})
+
 
 class CabinetForm(ModelForm):
     class Meta:
@@ -29,8 +29,6 @@ class CabinetForm(ModelForm):
             'name': TextInput(attrs={'class': 'form-control'}),
         }
 
- 
-
 
 class PlatformForm(ModelForm):
     class Meta:
@@ -42,4 +40,3 @@ class PlatformForm(ModelForm):
         widgets = {
             'name': TextInput(attrs={'class': 'form-control'}),
         }
-

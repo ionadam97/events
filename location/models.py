@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Location(models.Model):
     STAT = (
         ('deschisa', 'Deschisa'),
@@ -20,7 +19,6 @@ class Location(models.Model):
     data_inchidere = models.DateField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
-
     def __str__(self):
         return self.numar
 
@@ -30,7 +28,6 @@ class Manager(models.Model):
     email = models.EmailField(max_length=200, null=True, blank=True)
     telefon = models.CharField(max_length=200, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-
 
     def __str__(self):
         return self.nume

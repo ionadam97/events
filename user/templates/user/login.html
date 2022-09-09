@@ -1,38 +1,49 @@
-{% extends 'main.html' %}
-
-
-{% block content %}
+{% extends 'main.html' %} {% block content %}
 <main class="p-3">
-  <div class=" log-in p-3 col-4 container rounded">
-        
-    <div class=" col-9 p-2 container text-center ">
+  <div class="log-in p-3 col-4 container rounded">
+    <div class="col-9 p-2 container text-center">
       <h2 class="fw-bold mb-2 text-white text-uppercase">Login</h2>
       <p class="text-white mb-5">Please enter your login and password!</p>
-        <form class="form" method="POST" >
-            {% csrf_token %}
-            
-            <div class="mb-4">
-            <label class="text-white"  >Username:</label>
-            <input type="text"  name="username" class="form-control form-control-lg" />
-          </div>
-            <div class="mb-4">
-              <label class="form-label text-white" >Password:</label>
-              <input type="password" name="password"  class="form-control form-control-lg" />
-              
-            </div>
-            <p class="small mb-5"><a class="text-white" href="{% url 'reset_password' %}">Forgot password?</a></p>
-                
+      <form class="form" method="POST">
+        {% csrf_token %}
 
+        <div class="mb-4">
+          <label class="text-white">Username:</label>
+          <input
+            type="text"
+            name="username"
+            class="form-control form-control-lg"
+          />
+        </div>
+        <div class="mb-4">
+          <label class="form-label text-white">Password:</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control form-control-lg"
+          />
+        </div>
+        <p class="small mb-5">
+          <a class="text-white" href="{% url 'reset_password' %}"
+            >Forgot password?</a
+          >
+        </p>
 
-            <button class="btn btn-outline-light btn-lg px-5 mb-5" type="submit" value="Log In">Login</button>
-      
-            <p class="mb-4 text-white-50">Don't have an account? <a href="{% url 'register' %}" class="text-white fw-bold" >Sign Up</a>
-            </p>
-        </form>
+        <button
+          class="btn btn-outline-light btn-lg px-5 mb-5"
+          type="submit"
+          value="Log In"
+        >
+          Login
+        </button>
+
+        <p class="mb-4 text-white-50">
+          Don't have an account?
+          <a href="{% url 'register' %}" class="text-white fw-bold">Sign Up</a>
+        </p>
+      </form>
     </div>
-</div>
-    
+  </div>
 </main>
-
 
 {% endblock %}

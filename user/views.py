@@ -19,7 +19,7 @@ def registerUser(request):
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        
+
         if form.is_valid():
             to_email = form.cleaned_data.get('email')
             if to_email.endswith('@novoinvestment.md'):
@@ -28,42 +28,42 @@ def registerUser(request):
                 user.is_active = False
                 user.save()
 
-                # to get the domain of the current site  
-                current_site = get_current_site(request)  
-                mail_subject = 'Linkul de activare a fost trimis la ID-ul tău de e-mail'  
-                message = render_to_string('acc_active_email.html', {  
-                    'user': user,  
-                    'domain': current_site.domain,  
-                    'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
-                    'token':account_activation_token.make_token(user),  
-                })  
-                
-                email = EmailMessage(  
-                            mail_subject, message, to=[to_email]  
-                )  
-                email.send()  
+                # to get the domain of the current site
+                current_site = get_current_site(request)
+                mail_subject = 'Linkul de activare a fost trimis la ID-ul tău de e-mail'
+                message = render_to_string('acc_active_email.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.send()
                 return HttpResponse('Vă rugăm să vă confirmați adresa de e-mail pentru a finaliza înregistrarea')
 
                 # login(request, user)
                 # return redirect('login')
 
-    context= {'form':form}
+    context = {'form': form}
     return render(request, 'user/register.html', context)
 
 
-def activate(request, uidb64, token):  
-    User = get_user_model()  
-    try:  
-        uid = force_str(urlsafe_base64_decode(uidb64))  
-        user = User.objects.get(pk=uid)  
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):  
-        user = None  
-    if user is not None and account_activation_token.check_token(user, token):  
-        user.is_active = True  
-        user.save()  
-        return HttpResponse('Vă mulțumim pentru confirmarea prin e-mail. Acum vă puteți autentifica contul.')  
-    else:  
-        return HttpResponse('Linkul de activare este nevalid!')  
+def activate(request, uidb64, token):
+    User = get_user_model()
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return HttpResponse('Vă mulțumim pentru confirmarea prin e-mail. Acum vă puteți autentifica contul.')
+    else:
+        return HttpResponse('Linkul de activare este nevalid!')
 
 
 def loginUser(request):
@@ -86,13 +86,15 @@ def loginUser(request):
             return redirect(request.GET['next'] if 'next' in request.GET else 'account')
 
         else:
-            messages.error(request, 'Numele de utilizator sau Parola sunt incorecte')
+            messages.error(
+                request, 'Numele de utilizator sau Parola sunt incorecte')
 
     return render(request, 'user/login.html')
 
+
 def logoutUser(request):
     logout(request)
-    messages.warning(request,'Utilizatorul a fost deconectat!')
+    messages.warning(request, 'Utilizatorul a fost deconectat!')
     return redirect('login')
 
 
@@ -101,6 +103,7 @@ def profiles(request):
     profiles = Profile.objects.all
     context = {'profiles': profiles}
     return render(request, 'user/profiles.html', context)
+
 
 @login_required(login_url='login')
 def userProfile(request, pk):
@@ -124,10 +127,9 @@ def edithAccount(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            form.save() 
+            form.save()
 
             return redirect('account')
-
 
     context = {'form': form}
     return render(request, 'user/profile_form.html', context)

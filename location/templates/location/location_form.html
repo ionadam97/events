@@ -1,31 +1,29 @@
-{% extends 'main.html' %}
-
-
-{% block content %}
+{% extends 'main.html' %} {% block content %}
 <div class="row text-center p-2">
-<div class="col"><a class="btn btn-primary" href="{% url 'locations' %}">Locatii</a></div>
-<div class="col"><a class="btn btn-primary" href="{% url 'managers' %}">Manageri</a></div>
+  <div class="col">
+    <a class="btn btn-primary" href="{% url 'locations' %}">Locatii</a>
+  </div>
+  <div class="col">
+    <a class="btn btn-primary" href="{% url 'managers' %}">Manageri</a>
+  </div>
 </div>
-    <div class=" form_in col-9 container rounded">
-        
-        <br>
-        <form  method="POST" >
-            <div class="row g-3">
-            {% csrf_token %}
-            {% for field in form %}
-            <!-- Input:Text -->
-            <div class=" col-md-4">
-                <label >{{field.label}}:</label>
-                <label id="{{field.label}}"></label>
-               {{field}}
-            </div>
-            {% endfor %}
-                </div>
-                <br>
-                <input class=" btn btn-primary" type="submit" value="Submit" />
-               <br><br>
-            </form>
-        
+<div class="form_in col-9 container rounded">
+  <br />
+  <form method="POST">
+    <div class="row g-3">
+      {% csrf_token %} {% for field in form %}
+      <!-- Input:Text -->
+      <div class="col-md-4">
+        <label>{{field.label}}:</label>
+        <label id="{{field.label}}"></label>
+        {{field}}
+      </div>
+      {% endfor %}
     </div>
+    <br />
+    <input class="btn btn-primary" type="submit" value="Submit" />
+    <br /><br />
+  </form>
+</div>
 
-  {% endblock %}
+{% endblock %}

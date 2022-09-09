@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect
 from .models import Task, Rezolutie, Label, Componenta
 from .forms import TaskForm, ComponentaForm, RezolutieForm, LabelForm
 from egm.models import Egm, Cabinet
@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 # views
 
+
 @login_required(login_url='login')
 def dashboard(request):
     open = Task.objects.filter(status='open')
@@ -19,8 +20,8 @@ def dashboard(request):
     cmac = Task.objects.filter(status='waiting_cmac')
     lnm = Task.objects.filter(status='waiting_lnm')
 
-    context = {'open':open,'closed':closed,'progres':progres,
-        'vnet':vnet,'cmac':cmac,'lnm':lnm}
+    context = {'open': open, 'closed': closed, 'progres': progres,
+               'vnet': vnet, 'cmac': cmac, 'lnm': lnm}
     return render(request, 'task/dashboard.html', context)
 
 
@@ -34,8 +35,8 @@ def taskFilter(request, pk):
     labels = Label.objects.all()
     tasks = Task.objects.all()
     locatii = Location.objects.all()
-    context = {'tasks':tasks, 'rezolutii':rezolutii, 'labels':labels,'value':value,
-    'componente':componente, 'cabinete':cabinete, 'egms':egms, 'locatii':locatii}
+    context = {'tasks': tasks, 'rezolutii': rezolutii, 'labels': labels, 'value': value,
+               'componente': componente, 'cabinete': cabinete, 'egms': egms, 'locatii': locatii}
     return render(request, 'task/tasks.html', context)
 
 
@@ -48,8 +49,8 @@ def tasks(request):
     labels = Label.objects.all()
     tasks = Task.objects.all()
     locatii = Location.objects.all()
-    context = {'tasks':tasks, 'rezolutii':rezolutii, 'labels':labels,
-    'componente':componente, 'cabinete':cabinete, 'egms':egms, 'locatii':locatii}
+    context = {'tasks': tasks, 'rezolutii': rezolutii, 'labels': labels,
+               'componente': componente, 'cabinete': cabinete, 'egms': egms, 'locatii': locatii}
     return render(request, 'task/tasks.html', context)
 
 
@@ -61,9 +62,9 @@ def task(request, pk):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid:
             form.save()
-            return redirect('task',pk=task.nr )
+            return redirect('task', pk=task.nr)
 
-    context = {'task':task, 'form':form}
+    context = {'task': task, 'form': form}
     return render(request, 'task/task.html', context)
 
 
@@ -72,9 +73,9 @@ def selectori(request):
     labels = Label.objects.all()
     components = Componenta.objects.all()
     rezolutii = Rezolutie.objects.all()
-    context = {'labels':labels, 'components':components, 'rezolutii':rezolutii}
+    context = {'labels': labels,
+               'components': components, 'rezolutii': rezolutii}
     return render(request, 'task/selectori.html', context)
-
 
 
 # create
@@ -82,7 +83,7 @@ def selectori(request):
 
 @login_required(login_url='login')
 def createTask(request):
-    egm = list(Egm.objects.values('id','serie','locatia_id'))
+    egm = list(Egm.objects.values('id', 'serie', 'locatia_id'))
     profile = request.user.profile
     form = TaskForm()
     now = datetime.datetime.now()
@@ -98,10 +99,9 @@ def createTask(request):
             task.save()
             messages.success(request, 'Task-ul a fost adaugat')
             return redirect('tasks')
-        
-    context = {'form': form, 'listaJs':json.dumps(egm)}
-    return render(request, 'task/task_form.html', context)
 
+    context = {'form': form, 'listaJs': json.dumps(egm)}
+    return render(request, 'task/task_form.html', context)
 
 
 @login_required(login_url='login')
@@ -114,7 +114,7 @@ def createComponenta(request):
             form.save()
             return redirect('selectori')
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'task/form.html', context)
 
 
@@ -128,7 +128,7 @@ def createRezolutie(request):
             form.save()
             return redirect('selectori')
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'task/form.html', context)
 
 
@@ -142,7 +142,7 @@ def createLabel(request):
             form.save()
             return redirect('selectori')
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'task/form.html', context)
 
 
@@ -150,7 +150,7 @@ def createLabel(request):
 
 @login_required(login_url='login')
 def edithTask(request, pk):
-    egm = list(Egm.objects.values('id','serie','locatia_id'))
+    egm = list(Egm.objects.values('id', 'serie', 'locatia_id'))
     task = Task.objects.get(nr=pk)
     now = datetime.datetime.now()
     profile = request.user.profile
@@ -166,10 +166,10 @@ def edithTask(request, pk):
                 if task.status == 'closed':
                     task.data_inchidere = now
             task.save()
-        
-            return redirect('task',pk=task.nr )
 
-    context = {'task':task, 'form':form, 'listaJs':json.dumps(egm)}
+            return redirect('task', pk=task.nr)
+
+    context = {'task': task, 'form': form, 'listaJs': json.dumps(egm)}
     return render(request, 'task/task_form.html', context)
 
 
@@ -182,7 +182,7 @@ def edithComponenta(request, pk):
         if form.is_valid:
             form.save()
             return redirect('selectori')
-        
+
     context = {'form': form}
     return render(request, 'task/form.html', context)
 
@@ -196,10 +196,9 @@ def edithLabel(request, pk):
         if form.is_valid:
             form.save()
             return redirect('selectori')
-        
+
     context = {'form': form}
     return render(request, 'task/form.html', context)
-
 
 
 @login_required(login_url='login')
@@ -211,14 +210,6 @@ def edithRezolutie(request, pk):
         if form.is_valid:
             form.save()
             return redirect('selectori')
-        
+
     context = {'form': form}
     return render(request, 'task/form.html', context)
-
-
-
-
-
-
-
-

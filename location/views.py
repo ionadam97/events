@@ -1,4 +1,3 @@
-from re import M
 from django.shortcuts import render, redirect
 from .forms import LocationForm, ManagerForm
 from .models import Location, Manager
@@ -9,14 +8,14 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 def locations(request):
     locations = Location.objects.all()
-    context = {'locations':locations}
+    context = {'locations': locations}
     return render(request, 'location/locations.html', context)
 
 
 @login_required(login_url='login')
 def managers(request):
     managers = Manager.objects.all()
-    context = {'managers':managers}
+    context = {'managers': managers}
     return render(request, 'location/managers.html', context)
 
 
@@ -28,7 +27,7 @@ def createLocation(request):
         if form.is_valid:
             form.save()
             return redirect('locations')
-        
+
     context = {'form': form}
     return render(request, 'location/location_form.html', context)
 
@@ -41,7 +40,7 @@ def createManager(request):
         if form.is_valid:
             form.save()
             return redirect('managers')
-        
+
     context = {'form': form}
     return render(request, 'location/location_form.html', context)
 
@@ -55,7 +54,7 @@ def edithLocation(request, pk):
         if form.is_valid:
             form.save()
             return redirect('locations')
-        
+
     context = {'form': form}
     return render(request, 'location/location_form.html', context)
 
@@ -69,7 +68,7 @@ def edithManager(request, pk):
         if form.is_valid:
             form.save()
             return redirect('managers')
-        
+
     context = {'form': form}
     return render(request, 'location/location_form.html', context)
 
@@ -79,8 +78,8 @@ def deleteManager(request, pk):
     manager = Manager.objects.get(id=pk)
 
     if request.method == 'POST':
-            manager.delete()
-            return redirect('managers')
-        
+        manager.delete()
+        return redirect('managers')
+
     context = {'object': manager}
     return render(request, 'delete_template.html', context)

@@ -1,5 +1,4 @@
 from django.db import models
-import uuid
 from user.models import Profile
 from egm.models import Egm
 from location.models import Location
@@ -63,7 +62,6 @@ class Label(models.Model):
 class Rezolutie(models.Model):
     name = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-
 
     def __str__(self):
         return self.name

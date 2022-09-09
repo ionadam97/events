@@ -9,24 +9,27 @@ class Profile(models.Model):
     nume = models.CharField(max_length=200, blank=True, null=True)
     prenume = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=500, blank=True, null=True)
-    email_serviciu = models.EmailField(max_length=500,unique=True, blank=True, null=True)
+    email_serviciu = models.EmailField(
+        max_length=500, unique=True, blank=True, null=True)
     username = models.CharField(max_length=200, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    functie = models.CharField(max_length=200, blank=True, null=True, default='Tehnician Electronica')
-    profile_image = models.ImageField(null=True, blank=True, upload_to='profiles/', default='profiles/user-default.png')
+    functie = models.CharField(
+        max_length=200, blank=True, null=True, default='Tehnician Electronica')
+    profile_image = models.ImageField(
+        null=True, blank=True, upload_to='profiles/', default='profiles/user-default.png')
     url_facebook = models.CharField(max_length=200, blank=True, null=True)
     phone = models.CharField(max_length=200, blank=True, null=True)
     phone_serviciu = models.CharField(max_length=200, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, 
-                        primary_key=True, editable=False)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
 
     def __str__(self):
         return str(self.username)
-    
+
     class Meta:
         ordering = ['created']
-    
+
     @property
     def imageURL(self):
         try:
@@ -34,4 +37,3 @@ class Profile(models.Model):
         except:
             url = ''
         return url
-

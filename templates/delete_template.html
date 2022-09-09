@@ -1,23 +1,20 @@
-{% extends 'main.html' %}
-{% block content %}
+{% extends 'main.html' %} {% block content %}
 
+<main>
+  <div class="col-5 container rounded bg-color">
+    <div class="container p-3">
+      <a class="btn btn-primary" href="{{request.GET.next}}">Inapoi</a>
+      <br />
 
+      <form class="form" method="POST" action="">
+        {% csrf_token %}
+        <p class="h4 p-5">Are you sure you want to delete "{{object}}" ?</p>
+        <a class="btn btn-secondary" href="{{request.GET.next}}"> Cancel </a>
 
-<main >
-    <div class="col-5 container rounded bg-color">
-        <div class="container  p-3">
-            <a class="btn btn-primary" href="{{request.GET.next}}">Inapoi</a>
-            <br>
-
-            <form class="form" method="POST" action="">
-                {% csrf_token %}
-                <p class="h4 p-5">Are you sure you want to delete "{{object}}" ? </p>
-                <a class="btn btn-secondary " href="{{request.GET.next}}"> Cancel </a>
-               
-                <input class="btn btn-danger" type="submit" value="Confirm" />
-            </form>
-        </div>
+        <input class="btn btn-danger" type="submit" value="Confirm" />
+      </form>
     </div>
+  </div>
 </main>
 
-{% endblock content %} 
+{% endblock content %}

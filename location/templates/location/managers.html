@@ -1,45 +1,47 @@
-{% extends 'main.html' %}
-
-
-{% block content %}
+{% extends 'main.html' %} {% block content %}
 <div class="row text-center">
   <div class="col">
     <a class="btn btn-primary" href="{% url 'locations' %}">Locatii</a>
-    <a class="btn btn-primary" href="{% url 'location-form' %}">Adauga Locatie</a>
+    <a class="btn btn-primary" href="{% url 'location-form' %}"
+      >Adauga Locatie</a
+    >
   </div>
   <div class="col">
-    
-    <a class="btn btn-primary" href="{% url 'manager-form' %}">Adauga Manager</a>
+    <a class="btn btn-primary" href="{% url 'manager-form' %}"
+      >Adauga Manager</a
+    >
   </div>
-  <br><br>
+  <br /><br />
 </div>
 
-
-<div class=" text-center  tableFixHead">
-<table class="table table-bordered table-hover"  id="tabel">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Telefon</th>
-      <th scope="col">x</th>
-     
-
-    </tr>
-  </thead>
-  <tbody>
-    {% for manager in managers %}
-    <tr>
-      <th scope="row"><a href="{% url 'manager-edith' manager.id %}">{{manager.nume}}</a></th>
-      <td>{{manager.email}}</td>
-      <td>{{manager.telefon}}</td>
-      <td><a href="{% url 'manager-delete' manager.id %}?next=/location/managers">Delete</a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="text-center tableFixHead">
+  <table class="table table-bordered table-hover" id="tabel">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefon</th>
+        <th scope="col">x</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for manager in managers %}
+      <tr>
+        <th scope="row">
+          <a href="{% url 'manager-edith' manager.id %}">{{manager.nume}}</a>
+        </th>
+        <td>{{manager.email}}</td>
+        <td>{{manager.telefon}}</td>
+        <td>
+          <a
+            href="{% url 'manager-delete' manager.id %}?next=/location/managers"
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 
-  
-  
 {% endblock %}

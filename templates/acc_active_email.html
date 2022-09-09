@@ -1,6 +1,4 @@
-{% autoescape off %}  
-Salut {{ user.username }},  
-Vă rugăm să faceți clic pe link pentru a vă confirma înregistrarea,
-http://{{ domain }}{% url 'activate' uidb64=uid token=token %}  
-Dacă crezi că nu ești tu, ignoră acest e-mail.
-{% endautoescape %}
+{% autoescape off %} Salut {{ user.username }}, Vă rugăm să faceți clic pe link
+pentru a vă confirma înregistrarea, http://{{ domain }}{% url 'activate'
+uidb64=uid token=token %} Dacă crezi că nu ești tu, ignoră acest e-mail. {%
+endautoescape %}

@@ -18,7 +18,7 @@ MESSAGE_TAGS = {message_constants.DEBUG: 'debug',
                 message_constants.INFO: 'info',
                 message_constants.SUCCESS: 'success',
                 message_constants.WARNING: 'warning',
-                message_constants.ERROR: 'danger',}
+                message_constants.ERROR: 'danger', }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,7 +70,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR,'templates')
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'events.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'bd_2',
+        'NAME': 'bd_2',
         'USER': 'bd_2',
         'PASSWORD': 'Caminul1',
         'HOST': 'database-1.cjhzttjhhned.eu-west-3.rds.amazonaws.com',
@@ -144,7 +144,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587 
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'adamion003@gmail.com'
 EMAIL_HOST_PASSWORD = 'yfzozrafstegycmg'
@@ -152,7 +152,6 @@ EMAIL_HOST_PASSWORD = 'yfzozrafstegycmg'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 
 
 STATIC_URL = 'static/'
@@ -173,11 +172,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_QUERYSTRING_AUTH = False
-AWS_S3_FILE_OVERWRITE  = False
+AWS_S3_FILE_OVERWRITE = False
 
 AWS_ACCESS_KEY_ID = 'AKIA3QPHOHY3SKJLXCX3'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'events1-bucket'
 
 if os.getcwd() == '/app':
-    DEBUG = False 
+    DEBUG = False

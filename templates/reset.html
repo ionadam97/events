@@ -1,46 +1,40 @@
-{% extends 'main.html' %}
-
-
-{% block content %}
+{% extends 'main.html' %} {% block content %}
 <style>
-    input[type='text'],
-    input[type='email'],
-    input[type='password']{
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     min-width: 24rem;
     width: 100%;
     padding: 1rem 1.3rem;
     border-radius: 0.5rem;
     border: 2px solid var(--color-light);
     transition: all 0.3s ease-in-out;
-   }
+  }
 </style>
 
+<main>
+  <div class="col-5 container rounded bg-color">
+    <div class="container p-3">
+      <a class="backButton" href="{% url 'login' %}"
+        ><i class="im im-angle-left"></i
+      ></a>
 
+      <br />
+      <h3>Introduceți o parolă nouă</h3>
 
-<main >
-    <div class="col-5 container rounded bg-color">
-        <div class="container  p-3">
-            <a class="backButton" href="{% url 'login' %}"><i class="im im-angle-left"></i></a>
-            
-            <br>
-            <h3>Introduceți o parolă nouă</h3>
-            
-            <P>Vă rugăm să introduceți parola nouă de două ori
-                astfel încât să putem verifica că ați introdus-o corect.</P>
+      <p>
+        Vă rugăm să introduceți parola nouă de două ori astfel încât să putem
+        verifica că ați introdus-o corect.
+      </p>
 
-            <form class="form" method="POST" action="" >
-                {% csrf_token %}
-                {{form.as_p}}
-                
-                <a class="btn btn-outline-light " href="{% url 'login' %}">Anuleaza</a>
-                <input class="btn btn-outline-light" type="submit" value="Submit" />
-            </form>
-        </div>
+      <form class="form" method="POST" action="">
+        {% csrf_token %} {{form.as_p}}
+
+        <a class="btn btn-outline-light" href="{% url 'login' %}">Anuleaza</a>
+        <input class="btn btn-outline-light" type="submit" value="Submit" />
+      </form>
     </div>
+  </div>
 </main>
-
-
-
-
 
 {% endblock content %}
