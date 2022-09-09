@@ -160,12 +160,11 @@ def edithTask(request, pk):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid:
             task = form.save()
-            if profile.functie == 'Supervisor HD':
-                task.data_inchidere = None
-                if task.status != 'open':
-                    task.supervisor = profile.username
-                    if task.status == 'closed':
-                        task.data_inchidere = now
+            task.owner = profile
+            if task.status != 'open':
+                task.supervisor = profile.username
+                if task.status == 'closed':
+                    task.data_inchidere = now
             task.save()
         
             return redirect('task',pk=task.nr )
