@@ -15,31 +15,31 @@ import csv
 
 
  
-# def creaza():
-#     data = open_csv()
-#     cabinets = Cabinet.objects.all()
-#     platforms = Platform.objects.all()
-#     locations = Location.objects.all()
-#     for egm in data:
-#         for cabinet in cabinets:
-#             print(cabinet.id)
-#             if egm['Cabinet'] == cabinet.name:
-#                 egm['Cabinet'] = cabinet
+def creaza():
+    data = open_csv()
+    cabinets = Cabinet.objects.all()
+    platforms = Platform.objects.all()
+    locations = Location.objects.all()
+    for egm in data:
+        for cabinet in cabinets:
+            print(cabinet.id)
+            if egm['Cabinet'] == cabinet.name:
+                egm['Cabinet'] = cabinet
 
-#         for location in locations:
-#             print(location.id)
-#             if egm['Outlet'] == location.numar:
-#                 egm['Outlet'] = location
+        for location in locations:
+            print(location.id)
+            if egm['Outlet'] == location.numar:
+                egm['Outlet'] = location
     
-#     for egm in data:
+    for egm in data:
         
-#         if egm['Cabinet'] == cabinets[5] or egm['Cabinet'] == cabinets[1]:
-#             plat= platforms[1]
-#         else:
-#             plat= platforms[0]
+        if egm['Cabinet'] == cabinets[5] or egm['Cabinet'] == cabinets[1]:
+            plat= platforms[1]
+        else:
+            plat= platforms[0]
 
-#         Egm.objects.create(serie=egm['ADJ'], cabinet= egm['Cabinet'],
-#           platforma=plat, locatia=egm['Outlet'])
+        Egm.objects.create(serie=egm['ADJ'], cabinet= egm['Cabinet'],
+          platforma=plat, locatia=egm['Outlet'])
 
 
 
@@ -55,3 +55,4 @@ import csv
     # for egm in egms:
     #     print(egm)
     #     Egm.objects.create(serie=egm['serie'], cabinet= egm['cabinet'], platforma=platforms, locatia=locations)
+
