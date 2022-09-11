@@ -4,15 +4,17 @@ from .forms import EgmForm, CabinetForm, PlatformForm
 from location.models import Location
 from .models import Egm, Cabinet, Platform
 from django.contrib.auth.decorators import login_required, permission_required
+from .tests import creaza
 # Create your views here.
 
 
 @login_required(login_url='login')
 def egm(request):
     cabinete = Cabinet.objects.all()
-    egms = Egm.objects.all()
+    egms = Egm.objects.all().order_by('-created')
     locatii = Location.objects.all()
     platforme = Platform.objects.all()
+
 
     context = {'cabinete': cabinete, 'egms': egms,
                "locatii": locatii, 'platforme': platforme}
@@ -37,14 +39,14 @@ def cabinet(request):
 @login_required(login_url='login')
 def createEgm(request):
     form = EgmForm()
-    value = 'egm'
+    # creaza()
     if request.method == 'POST':
         form = EgmForm(request.POST)
         if form.is_valid:
             form.save()
             return redirect('egm')
 
-    context = {'form': form, 'value': value}
+    context = {'form': form}
     return render(request, 'egm/egm_form.html', context)
 
 

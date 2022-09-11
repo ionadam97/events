@@ -90,24 +90,24 @@ WSGI_APPLICATION = 'events.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bd_2',
-        'USER': 'bd_2',
-        'PASSWORD': 'Caminul1',
-        'HOST': 'database-1.cjhzttjhhned.eu-west-3.rds.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'bd_2',
+#         'USER': 'bd_2',
+#         'PASSWORD': 'Caminul1',
+#         'HOST': 'database-1.cjhzttjhhned.eu-west-3.rds.amazonaws.com',
+#         'PORT': '5432',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation

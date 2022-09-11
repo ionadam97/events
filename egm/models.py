@@ -15,6 +15,9 @@ class Egm(models.Model):
 
     def __str__(self):
         return self.serie
+    
+    class Meta:
+        ordering = ['serie']
 
 
 class Cabinet(models.Model):

@@ -70,9 +70,9 @@
       {% for egm in egms %}
       <tr>
         {% if request.user.is_staff %}
-        <td  class="fw-bold" ><a href="{% url 'egm-edith' egm.id %}?next=/egm">{{egm.id}}</a></td>
+        <td  class="fw-bold" ><a href="{% url 'egm-edith' egm.id %}?next=/egm">{{forloop.revcounter}}</a></td>
         {% else %}
-        <td  class="fw-bold">{{egm.id}}</td>
+        <td  class="fw-bold">{{forloop.revcounter}}</td>
         {% endif %}
 
         <td>{{egm.locatia.numar}}</td>

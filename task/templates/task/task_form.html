@@ -7,8 +7,9 @@
 
 <form method="POST">
   <div class="row p-3 g-3">
-    {% csrf_token %} {% for field in form %} {% if field == form.status and
-    request.user.is_staff == False %}
+    {% csrf_token %}
+     {% for field in form %} 
+     {% if field == form.status and request.user.is_staff == False %}
     <!-- Input:Text -->
     <div class="col-md-4 visually-hidden">
       <label>{{field.label}}:</label>
@@ -21,7 +22,8 @@
       {{field}}
     </div>
 
-    {% endif %} {% endfor %}
+    {% endif %} 
+    {% endfor %}
   </div>
   <input
     class="btn btn-primary btn--sub btn--lg my-md"
