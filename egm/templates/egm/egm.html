@@ -33,7 +33,7 @@
             <ul class="dropdown-menu">
               <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
               {% for locatia in locatii %}
-                <li class="btn dropdown-item " value="{{locatia.id}}" onclick="filtru(this, 1, value)">{{locatia}}</aclas></li>
+                <li class="btn dropdown-item " value="{{locatia.id}}" onclick="filtru(this, 1, value)">{{locatia}}</li>
               {% endfor %}
             </ul>
         </th>
@@ -42,7 +42,7 @@
             <ul class="dropdown-menu" id="id_egm">
               <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
               {% for egm in egms %}
-                <li class="btn dropdown-item " value="{{egm.locatia_id}}"  onclick="filtru(this, 2)">{{egm}}</aclas></li>
+                <li class="btn dropdown-item " value="{{egm.locatia_id}}"  onclick="filtru(this, 2)">{{egm}}</li>
               {% endfor %}
             </ul>
         </th>
@@ -51,7 +51,7 @@
             <ul class="dropdown-menu">
               <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
             {% for cabinet in cabinete %}
-              <li class="btn dropdown-item "  onclick="filtru(this, 3)">{{cabinet}}</aclas></li>
+              <li class="btn dropdown-item "  onclick="filtru(this, 3)">{{cabinet}}</li>
             {% endfor %}
             </ul>
         </th>
@@ -60,7 +60,7 @@
             <ul class="dropdown-menu">
               <li class="btn dropdown-item" onclick="filtru(this, 0)">All</li>
               {% for platforma in platforme %}
-                <li class="btn dropdown-item "  onclick="filtru(this, 4)">{{platforma}}</aclas></li>
+                <li class="btn dropdown-item "  onclick="filtru(this, 4)">{{platforma}}</li>
               {% endfor %}
             </ul>
         </th>

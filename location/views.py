@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 def locations(request):
     locations = Location.objects.all()
+    
     context = {'locations': locations}
     return render(request, 'location/locations.html', context)
 
@@ -15,6 +16,7 @@ def locations(request):
 @login_required(login_url='login')
 def managers(request):
     managers = Manager.objects.all()
+
     context = {'managers': managers}
     return render(request, 'location/managers.html', context)
 
@@ -76,7 +78,6 @@ def edithManager(request, pk):
 @login_required(login_url='login')
 def deleteManager(request, pk):
     manager = Manager.objects.get(id=pk)
-
     if request.method == 'POST':
         manager.delete()
         return redirect('managers')

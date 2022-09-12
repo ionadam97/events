@@ -21,7 +21,4 @@ urlpatterns = [
     path('edith-label/<str:pk>/', views.edithLabel, name='edith-label'),
     path('edith-rezolutie/<str:pk>/',
          views.edithRezolutie, name='edith-rezolutie'),
-
-
-
 ]

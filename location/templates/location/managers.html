@@ -1,15 +1,12 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %}
+{% block content %}
 <div class="row text-center">
   <div class="col">
     <a class="btn btn-primary" href="{% url 'locations' %}">Locatii</a>
-    <a class="btn btn-primary" href="{% url 'location-form' %}"
-      >Adauga Locatie</a
-    >
+    <a class="btn btn-primary" href="{% url 'location-form' %}">Adauga Locatie</a>
   </div>
   <div class="col">
-    <a class="btn btn-primary" href="{% url 'manager-form' %}"
-      >Adauga Manager</a
-    >
+    <a class="btn btn-primary" href="{% url 'manager-form' %}">Adauga Manager</a>
   </div>
   <br /><br />
 </div>

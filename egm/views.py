@@ -1,4 +1,3 @@
-from calendar import c
 from django.shortcuts import render, redirect
 from .forms import EgmForm, CabinetForm, PlatformForm
 from location.models import Location
@@ -15,7 +14,6 @@ def egm(request):
     locatii = Location.objects.all()
     platforme = Platform.objects.all()
 
-
     context = {'cabinete': cabinete, 'egms': egms,
                "locatii": locatii, 'platforme': platforme}
     return render(request, 'egm/egm.html', context)
@@ -24,6 +22,7 @@ def egm(request):
 @login_required(login_url='login')
 def platform(request):
     platforme = Platform.objects.all()
+
     context = {'platforme': platforme}
     return render(request, 'egm/platforme.html', context)
 
@@ -31,6 +30,7 @@ def platform(request):
 @login_required(login_url='login')
 def cabinet(request):
     cabinete = Cabinet.objects.all()
+    
     context = {'cabinete': cabinete}
     return render(request, 'egm/cabinet.html', context)
 
@@ -39,7 +39,6 @@ def cabinet(request):
 @login_required(login_url='login')
 def createEgm(request):
     form = EgmForm()
-    # creaza()
     if request.method == 'POST':
         form = EgmForm(request.POST)
         if form.is_valid:

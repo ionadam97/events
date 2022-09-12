@@ -1,4 +1,5 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %}
+ {% block content %}
 <style>
   input[type="text"],
   input[type="email"],
@@ -15,10 +16,7 @@
 <main>
   <div class="col-5 container rounded bg-color">
     <div class="container p-3">
-      <a class="backButton" href="{% url 'login' %}"
-        ><i class="im im-angle-left"></i
-      ></a>
-
+      <a class="backButton" href="{% url 'login' %}"><i class="im im-angle-left"></i></a>
       <br />
       <h3>Introduceți o parolă nouă</h3>
 
@@ -28,7 +26,8 @@
       </p>
 
       <form class="form" method="POST" action="">
-        {% csrf_token %} {{form.as_p}}
+        {% csrf_token %}
+         {{form.as_p}}
 
         <a class="btn btn-outline-light" href="{% url 'login' %}">Anuleaza</a>
         <input class="btn btn-outline-light" type="submit" value="Submit" />

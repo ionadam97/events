@@ -4,13 +4,13 @@ from location.models import Location
 import csv
 # Create your tests here.
 
-# def open_csv():
-#     data = []
-#     with open('egm/cabinets.csv') as csv_file:
-#         csv_reader = csv.DictReader(csv_file, delimiter = ";")
-#         for rows in csv_reader:
-#             data.append(rows)
-#     return data
+def open_csv():
+    data = []
+    with open('egm/cabinets.csv') as csv_file:
+        csv_reader = csv.DictReader(csv_file, delimiter = ";")
+        for rows in csv_reader:
+            data.append(rows)
+    return data
     
 
 
@@ -33,10 +33,10 @@ def creaza():
     
     for egm in data:
         
-        if egm['Cabinet'] == cabinets[5] or egm['Cabinet'] == cabinets[1]:
-            plat= platforms[1]
-        else:
+        if egm['Cabinet'] == cabinets[5] or egm['Cabinet'] == cabinets[4]:
             plat= platforms[0]
+        else:
+            plat= platforms[1]
 
         Egm.objects.create(serie=egm['ADJ'], cabinet= egm['Cabinet'],
           platforma=plat, locatia=egm['Outlet'])
