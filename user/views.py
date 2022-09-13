@@ -19,30 +19,29 @@ def registerUser(request):
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-
+        
         if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.is_active = False
+            user.save()
+
+            # to get the domain of the current site
+            current_site = get_current_site(request)
+            mail_subject = 'Linkul de activare a fost trimis la ID-ul tău de e-mail'
+            message = render_to_string('acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
             to_email = form.cleaned_data.get('email')
-            if to_email.endswith('@novoinvestment.md'):
-                user = form.save(commit=False)
-                user.username = user.username.lower()
-                user.is_active = False
-                user.save()
-
-                # to get the domain of the current site
-                current_site = get_current_site(request)
-                mail_subject = 'Linkul de activare a fost trimis la ID-ul tău de e-mail'
-                message = render_to_string('acc_active_email.html', {
-                    'user': user,
-                    'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                    'token': account_activation_token.make_token(user),
-                })
-
-                email = EmailMessage(
-                    mail_subject, message, to=[to_email]
-                )
-                email.send()
-                return HttpResponse('Vă rugăm să vă confirmați adresa de e-mail pentru a finaliza înregistrarea')
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.send()
+            return HttpResponse('Vă rugăm să vă confirmați adresa de e-mail pentru a finaliza înregistrarea')
+        
 
                 # login(request, user)
                 # return redirect('login')

@@ -1,6 +1,14 @@
 {% extends 'main.html' %}
  {% block content %}
+
 <main class="p-3">
+  {% if form.errors %}
+  <div class="alert alert-danger alert-dismissible fade show col-5 container">
+    <p>{{form.errors.email}}</p>
+    <p>{{form.errors.password2}}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+            {% endif %}
   <div class="log-in p-3 col-4 container rounded">
     <div class="col-9 p-2 container text-center">
       <h2 class="fw-bold mb-2 text-white text-uppercase">Inregistreazate</h2>

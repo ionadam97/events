@@ -37,7 +37,7 @@ class Task(models.Model):
     supervisor = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return str(self.locatia.numar)
+        return str(self.egm)
 
     class Meta:
         ordering = ['-created']
