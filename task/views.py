@@ -12,7 +12,7 @@ from .tests import creaza_task
 # views
 
 
-@login_required(login_url='login')
+
 def dashboard(request):
     open = Task.objects.filter(status='open')
     closed = Task.objects.filter(status='closed')
@@ -26,7 +26,7 @@ def dashboard(request):
     return render(request, 'task/dashboard.html', context)
 
 
-@login_required(login_url='login')
+
 def taskFilter(request, pk):
     value = pk
     componente = Componenta.objects.all()
@@ -41,7 +41,7 @@ def taskFilter(request, pk):
     return render(request, 'task/tasks.html', context)
 
 
-@login_required(login_url='login')
+
 def tasks(request):
     componente = Componenta.objects.all()
     cabinete = Cabinet.objects.all()
@@ -55,7 +55,7 @@ def tasks(request):
     return render(request, 'task/tasks.html', context)
 
 
-@login_required(login_url='login')
+
 def task(request, pk):
     task = Task.objects.get(nr=pk)
     form = TaskForm(instance=task)
@@ -69,7 +69,7 @@ def task(request, pk):
     return render(request, 'task/task.html', context)
 
 
-@login_required(login_url='login')
+
 def selectori(request):
     labels = Label.objects.all()
     components = Componenta.objects.all()

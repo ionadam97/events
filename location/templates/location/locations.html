@@ -2,11 +2,15 @@
 {% block content %}
 <div class="row text-center p-2">
   <div class="col">
+    {% if request.user.is_staff %}
     <a class="btn btn-primary" href="{% url 'location-form' %}">Adauga Locatie</a>
+    {% endif %}
   </div>
   <div class="col">
     <a class="btn btn-primary" href="{% url 'managers' %}">Manageri</a>
+    {% if request.user.is_staff %}
     <a class="btn btn-primary" href="{% url 'manager-form' %}">Adauga Manager</a>
+    {% endif %}
   </div>
 </div>
 
@@ -30,11 +34,12 @@
     <tbody>
       {% for location in locations %}
       <tr>
-        <th scope="row">
-          <a href="{% url 'location-edith' location.id %}"
-            >{{location.numar}}</a
-          >
-        </th>
+        {% if request.user.is_staff %}
+        <td  class="fw-bold" ><a href="{% url 'location-edith' location.id %}?next=/location">{{location.numar}}</a></td>
+        {% else %}
+        <td  class="fw-bold">{{location.numar}}</td>
+        {% endif %}
+       
         <td>{{location.name}}</td>
         <td>{{location.address}}</td>
         <td>{{location.telefon}}</td>

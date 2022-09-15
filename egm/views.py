@@ -7,7 +7,7 @@ from .tests import creaza
 # Create your views here.
 
 
-@login_required(login_url='login')
+
 def egm(request):
     cabinete = Cabinet.objects.all()
     egms = Egm.objects.all().order_by('-created')
@@ -19,7 +19,7 @@ def egm(request):
     return render(request, 'egm/egm.html', context)
 
 
-@login_required(login_url='login')
+
 def platform(request):
     platforme = Platform.objects.all()
 
@@ -27,7 +27,7 @@ def platform(request):
     return render(request, 'egm/platforme.html', context)
 
 
-@login_required(login_url='login')
+
 def cabinet(request):
     cabinete = Cabinet.objects.all()
     

@@ -1,5 +1,4 @@
 from django.db import models
-from user.models import Profile
 from egm.models import Egm
 from location.models import Location
 

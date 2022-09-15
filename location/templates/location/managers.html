@@ -3,10 +3,14 @@
 <div class="row text-center">
   <div class="col">
     <a class="btn btn-primary" href="{% url 'locations' %}">Locatii</a>
+    {% if request.user.is_staff %}
     <a class="btn btn-primary" href="{% url 'location-form' %}">Adauga Locatie</a>
+    {% endif %}
   </div>
   <div class="col">
+    {% if request.user.is_staff %}
     <a class="btn btn-primary" href="{% url 'manager-form' %}">Adauga Manager</a>
+    {% endif %}
   </div>
   <br /><br />
 </div>
@@ -25,7 +29,11 @@
       {% for manager in managers %}
       <tr>
         <th scope="row">
+          {% if request.user.is_staff %}
           <a href="{% url 'manager-edith' manager.id %}">{{manager.nume}}</a>
+          {% else %}
+          <a >{{manager.nume}}</a>
+          {% endif %}
         </th>
         <td>{{manager.email}}</td>
         <td>{{manager.telefon}}</td>

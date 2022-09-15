@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from .forms import LocationForm, ManagerForm
 from .models import Location, Manager
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 
-@login_required(login_url='login')
+
 def locations(request):
     locations = Location.objects.all()
     
@@ -13,14 +13,14 @@ def locations(request):
     return render(request, 'location/locations.html', context)
 
 
-@login_required(login_url='login')
+
 def managers(request):
     managers = Manager.objects.all()
 
     context = {'managers': managers}
     return render(request, 'location/managers.html', context)
 
-
+@permission_required('is_staff')
 @login_required(login_url='login')
 def createLocation(request):
     form = LocationForm()
@@ -33,7 +33,7 @@ def createLocation(request):
     context = {'form': form}
     return render(request, 'location/location_form.html', context)
 
-
+@permission_required('is_staff')
 @login_required(login_url='login')
 def createManager(request):
     form = ManagerForm()
@@ -46,7 +46,7 @@ def createManager(request):
     context = {'form': form}
     return render(request, 'location/location_form.html', context)
 
-
+@permission_required('is_staff')
 @login_required(login_url='login')
 def edithLocation(request, pk):
     locatia = Location.objects.get(id=pk)
@@ -60,7 +60,7 @@ def edithLocation(request, pk):
     context = {'form': form}
     return render(request, 'location/location_form.html', context)
 
-
+@permission_required('is_staff')
 @login_required(login_url='login')
 def edithManager(request, pk):
     manager = Manager.objects.get(id=pk)
@@ -74,7 +74,7 @@ def edithManager(request, pk):
     context = {'form': form}
     return render(request, 'location/location_form.html', context)
 
-
+@permission_required('is_staff')
 @login_required(login_url='login')
 def deleteManager(request, pk):
     manager = Manager.objects.get(id=pk)
