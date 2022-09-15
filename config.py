@@ -1,0 +1,7 @@
+SECRET_KEY = 'django-insecure-gw6!riglkw8ix8@igth=m-o1v+0qnzew=zh4kn4hx32b@mb@20'
+db_password = 'Caminul1'
+AWS_ACCESS_KEY_ID = 'AKIA3QPHOHY3SKJLXCX3'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'events1-bucket'
+EMAIL_HOST_USER = 'adamion003@gmail.com'
+EMAIL_HOST_PASSWORD = 'yfzozrafstegycmg'

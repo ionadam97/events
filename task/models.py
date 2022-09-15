@@ -19,8 +19,7 @@ class Task(models.Model):
         Location, null=True, blank=True, on_delete=models.DO_NOTHING)
     egm = models.ForeignKey(Egm, null=True, blank=True,
                             on_delete=models.DO_NOTHING)
-    owner = models.ForeignKey(
-        Profile, null=True, blank=True, on_delete=models.DO_NOTHING)
+    owner = models.CharField(max_length=200, blank=True, null=True)
     informatorul = models.CharField(max_length=200, blank=True, null=True)
     componenta = models.ForeignKey(
         'Componenta', null=True, blank=True, on_delete=models.DO_NOTHING)

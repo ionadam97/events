@@ -92,7 +92,7 @@ def createTask(request):
         form = TaskForm(request.POST)
         if form.is_valid:
             task = form.save()
-            task.owner = profile
+            task.owner = profile.username
             if task.status != 'open':
                 task.supervisor = profile.username
                 if task.status == 'closed':
@@ -161,7 +161,6 @@ def edithTask(request, pk):
         form = TaskForm(request.POST, instance=task)
         if form.is_valid:
             task = form.save()
-            task.owner = profile
             if task.status != 'open':
                 task.supervisor = profile.username
                 if task.status == 'closed':
