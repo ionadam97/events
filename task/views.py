@@ -84,6 +84,7 @@ def selectori(request):
 
 @login_required(login_url='login')
 def createTask(request):
+    # creaza_task()
     egm = list(Egm.objects.values('id', 'serie', 'locatia_id'))
     profile = request.user.profile
     form = TaskForm()

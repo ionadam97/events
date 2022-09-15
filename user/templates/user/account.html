@@ -93,6 +93,19 @@
                   <p class="text-muted mb-0">{{profile.location}}</p>
                 </div>
               </div>
+              <hr>
+              {% endif %}
+
+              {% if profile.url_facebook != None %}
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Facebook</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"><a href="{{profile.url_facebook}}">{{profile.url_facebook}}</a></p>
+                </div>
+              </div>
+              
               {% endif %}
 
             </div>
