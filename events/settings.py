@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import config
 from pathlib import Path
 import os
 from django.contrib.messages import constants as message_constants
@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gw6!riglkw8ix8@igth=m-o1v+0qnzew=zh4kn4hx32b@mb@20'
+SECRET_KEY = config.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -95,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bd_2',
         'USER': 'bd_2',
-        'PASSWORD': 'Caminul1',
+        'PASSWORD': config.db_password,
         'HOST': 'database-1.cjhzttjhhned.eu-west-3.rds.amazonaws.com',
         'PORT': '5432',
     }
@@ -146,8 +146,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'adamion003@gmail.com'
-EMAIL_HOST_PASSWORD = 'yfzozrafstegycmg'
+EMAIL_HOST_USER = config.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = config.EMAIL_HOST_PASSWORD
 
 
 # Static files (CSS, JavaScript, Images)
@@ -174,9 +174,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_FILE_OVERWRITE = False
 
-AWS_ACCESS_KEY_ID = 'AKIA3QPHOHY3SKJLXCX3'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'events1-bucket'
+AWS_ACCESS_KEY_ID = config.AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = config.AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = config.AWS_STORAGE_BUCKET_NAME
 
 if os.getcwd() == '/app':
     DEBUG = False
