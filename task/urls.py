@@ -4,8 +4,8 @@ from task import views
 
 urlpatterns = [
     # view
-    path('dashboard/', views.dashboard, name='dashboard'),
-    path('', views.tasks, name='tasks'),
+    path('', views.dashboard, name='dashboard'),
+    path('tasks', views.tasks, name='tasks'),
     path('tasks-filtred/<str:pk>/', views.taskFilter, name='tasks-filtred'),
     path('task/<str:pk>/', views.task, name='task'),
     path('selectori/', views.selectori, name='selectori'),
